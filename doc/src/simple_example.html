@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>src.simple_example API documentation</title>
+<meta name="description" content="A simple example to show that Signum is converging." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.simple_example</code></h1>
+</header>
+<section id="section-intro">
+<p>A simple example to show that Signum is converging.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;A simple example to show that Signum is converging.&#34;&#34;&#34;
+
+
+# Import Python packages
+import numpy as np
+from typing import Callable, List, Tuple
+from numpy.random import multivariate_normal, randn
+from scipy.linalg.special_matrices import toeplitz
+from sklearn.linear_model import LinearRegression
+
+
+class Worker:
+    &#34;&#34;&#34;Simulate a worker.&#34;&#34;&#34;
+
+    def __init__(self, x: np.ndarray, batch_size: int = 8, lr: float = 1e-4, beta: float = 0.9,
+                 weight_decay: float = 0.):
+        &#34;&#34;&#34;
+        Initialize a worker instance.
+
+        Parameters
+        ----------
+        x : np.ndarray
+            Initial value.
+
+        batch_size : int, default=8
+            Batch size.
+
+        lr : float, default=1e-4
+            Learning rate.
+
+        beta : float, default=0.9
+            Momentum.
+
+        weight_decay : float, default=0.
+            Weight decay for the optimizer.
+        &#34;&#34;&#34;
+        self.x = x
+
+        self.batch_size = batch_size
+
+        self.beta = beta
+        self.lr = lr
+        self.weight_decay = weight_decay
+
+        self.v_m = 0.
+
+    def compute_sign(self, grad_fn: Callable, inputs: Tuple[np.ndarray, ...]) -&gt; int:
+        &#34;&#34;&#34;Compute sign of gradients wrt a batch of data.
+
+        Parameters
+        ----------
+        grad_fn : Callable
+            Function that computed the gradient.
+
+        inputs : Tuple[np.ndarray, ...]
+            Input data.
+
+        Returns
+        -------
+        sg_v_m : int
+            Sign of gradients, as a result of Signum algorithm.
+        &#34;&#34;&#34;
+        g_m = np.zeros(self.batch_size)
+        for i in range(self.batch_size):
+            g_m += grad_fn(inputs, self.x)
+        g_m = np.mean(g_m)
+
+        self.v_m = (1 - self.beta)*g_m + self.beta*self.v_m
+        sg_v_m = 2*(self.v_m &gt;= 0) - 1
+
+        return sg_v_m
+
+    def update(self, sg_V: int):
+        &#34;&#34;&#34;
+        Update **x** with computed sign.
+
+        Parameters
+        ----------
+        sg_V : int
+            Sign as gathered in the server.
+        &#34;&#34;&#34;
+        self.x -= self.lr * (sg_V + self.weight_decay*self.x)
+
+
+class Server:
+    &#34;&#34;&#34;Simulate a server instance that gathers a list of workers.&#34;&#34;&#34;
+
+    def __init__(self, workers: List[Worker], batch_size: int = 8):
+        &#34;&#34;&#34;
+        Initialize the server.
+
+        Parameters
+        ----------
+        workers : List[`Worker`]
+            List of workers instances.
+
+        batch_size : int, default=8
+            Batch size.
+        &#34;&#34;&#34;
+        self.workers = workers
+        self.M = len(workers)
+
+        self.batch_size = batch_size
+
+    def aggregate_sign(self, workers_sg: np.ndarray) -&gt; int:
+        &#34;&#34;&#34;
+        Aggregate gradients signs of workers and compute final sign.
+
+        Parameters
+        ----------
+        workers_sg : np.ndarray
+            Gradients signs of workers.
+
+        Returns
+        -------
+        sg_V : int
+            Sign of aggregated workers signs.
+        &#34;&#34;&#34;
+        V = 0.
+
+        assert len(workers_sg) == self.M
+
+        for m in range(self.M):
+
+            V += workers_sg[m]
+
+        sg_V = 2*(V &gt;= 0) - 1
+
+        return sg_V
+
+    def step(self, grad_fn: Callable, workers_inputs: List[Tuple[np.ndarray, ...]]):
+        &#34;&#34;&#34;
+        Run a step of optimization.
+
+        Parameters
+        ----------
+        grad_fn : Callable
+            Function that computes the gradient.
+
+        workers_inputs : List[np.ndarray]
+            Input data for each worker.
+        &#34;&#34;&#34;
+        assert len(workers_inputs) == self.M
+
+        # Compute batch gradient on each worker
+        workers_sg = np.zeros(self.M)
+
+        for m in range(self.M):
+
+            workers_sg[m] = self.workers[m].compute_sign(grad_fn, workers_inputs[m])
+
+        # Aggregate signs
+        sg_V = self.aggregate_sign(workers_sg)
+
+        # Update x on each worker
+        for m in range(self.M):
+
+            self.workers[m].update(sg_V)
+
+
+def grad_linreg(inputs: Tuple[np.ndarray, ...], w: np.ndarray) -&gt; np.ndarray:
+    &#34;&#34;&#34;
+    Compute the gradient of linear regression.
+
+    Parameters
+    ----------
+    inputs : Tuple[np.ndarray, ...]
+        Input data.
+
+    w : np.ndarray
+        Weights.
+
+    Returns
+    -------
+    grad[0] : np.ndarray
+        Value of the gradient at **inputs**.
+    &#34;&#34;&#34;
+    X, y = inputs
+    grad = 2 * X.T.dot(X.dot(w) - y)
+
+    return grad[0]
+
+
+def simu_linreg(w0: np.ndarray, n_samples: int = 1000, corr: float = 0.5,
+                std: float = 0.5) -&gt; Tuple[np.ndarray, ...]:
+    &#34;&#34;&#34;
+    Simulation of a linear regression model with Gaussian features and a Toeplitz covariance, with
+    Gaussian noise.
+
+    Parameters
+    ----------
+    w0 : numpy.ndarray, shape=(n_features,)
+        Model weights.
+
+    n_samples : int, default=1000
+        Number of samples to simulate.
+
+    corr : float, default=0.5
+        Correlation of the features.
+
+    std : float, default=0.5
+        Standard deviation of the noise.
+
+    Returns
+    -------
+    X : numpy.ndarray, shape=(n_samples, n_features)
+        Simulated features matrix. It contains samples of a centered Gaussian  vector with Toeplitz
+        covariance.
+
+    y : numpy.ndarray, shape=(n_samples,)
+        Simulated labels.
+    &#34;&#34;&#34;
+    n_features = w0.shape[0]
+
+    # Construction of a covariance matrix
+    cov = toeplitz(corr ** np.arange(0, n_features))
+
+    # Simulation of features
+    X = multivariate_normal(np.zeros(n_features), cov, size=n_samples)
+
+    # Simulation of the labels
+    y = X.dot(w0) + std * randn(n_samples)
+
+    return X, y
+
+
+if __name__ == &#34;__main__&#34;:
+
+    # Linear regression simulation
+    n_samples = 50000
+    w0 = np.array([0.5])
+
+    X, y = simu_linreg(w0, n_samples=n_samples, corr=0.3, std=0.5)
+    data = (X, y)
+
+    # Initialization of processes
+    batch_size = 8
+    M = 10
+    x0 = np.array([0.])
+    lr = 0.0001
+
+    workers = [Worker(x0, lr=lr) for m in range(M)]
+    server = Server(workers)
+
+    # Optimization with Signum
+    nb_iter = n_samples//(M*batch_size)
+    idx = 0
+    while idx &lt; nb_iter:
+
+        idx_st = idx*(M*batch_size)
+        idx_end = idx_st + batch_size
+
+        workers_inputs: List[Tuple[np.ndarray, ...]] = []
+        for m in range(M):
+
+            workers_inputs.append((X[idx_st:idx_end], y[idx_st:idx_end]))
+
+            idx_st = idx_end
+            idx_end += batch_size
+
+        server.step(grad_linreg, workers_inputs)
+
+        print(server.workers[0].x)
+
+        idx += 1
+
+    # Comparison with the true value
+    print(&#34;Approx. solution: &#34;, LinearRegression().fit(X, y).coef_)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="src.simple_example.grad_linreg"><code class="name flex">
+<span>def <span class="ident">grad_linreg</span></span>(<span>inputs: Tuple[numpy.ndarray, ...], w: numpy.ndarray) ‑> numpy.ndarray</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the gradient of linear regression.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>inputs</code></strong> :&ensp;<code>Tuple[np.ndarray, &hellip;]</code></dt>
+<dd>Input data.</dd>
+<dt><strong><code>w</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>Weights.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>grad[0] : np.ndarray</code></dt>
+<dd>Value of the gradient at <strong>inputs</strong>.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def grad_linreg(inputs: Tuple[np.ndarray, ...], w: np.ndarray) -&gt; np.ndarray:
+    &#34;&#34;&#34;
+    Compute the gradient of linear regression.
+
+    Parameters
+    ----------
+    inputs : Tuple[np.ndarray, ...]
+        Input data.
+
+    w : np.ndarray
+        Weights.
+
+    Returns
+    -------
+    grad[0] : np.ndarray
+        Value of the gradient at **inputs**.
+    &#34;&#34;&#34;
+    X, y = inputs
+    grad = 2 * X.T.dot(X.dot(w) - y)
+
+    return grad[0]</code></pre>
+</details>
+</dd>
+<dt id="src.simple_example.multivariate_normal"><code class="name flex">
+<span>def <span class="ident">multivariate_normal</span></span>(<span>mean, cov, size=None, check_valid='warn', tol=1e-08)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draw random samples from a multivariate normal distribution.</p>
+<p>The multivariate normal, multinormal or Gaussian distribution is a
+generalization of the one-dimensional normal distribution to higher
+dimensions.
+Such a distribution is specified by its mean and
+covariance matrix.
+These parameters are analogous to the mean
+(average or "center") and variance (standard deviation, or "width,"
+squared) of the one-dimensional normal distribution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New code should use the <code><a title="src.simple_example.multivariate_normal" href="#src.simple_example.multivariate_normal">RandomState.multivariate_normal()</a></code> method of a <code>default_rng()</code>
+instance instead; please see the :ref:<code>random-quick-start</code>.</p>
+</div>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>mean</code></strong> :&ensp;<code>1-D array_like,</code> of <code>length N</code></dt>
+<dd>Mean of the N-dimensional distribution.</dd>
+<dt><strong><code>cov</code></strong> :&ensp;<code>2-D array_like,</code> of <code>shape (N, N)</code></dt>
+<dd>Covariance matrix of the distribution. It must be symmetric and
+positive-semidefinite for proper sampling.</dd>
+<dt><strong><code>size</code></strong> :&ensp;<code>int</code> or <code>tuple</code> of <code>ints</code>, optional</dt>
+<dd>Given a shape of, for example, <code>(m,n,k)</code>, <code>m*n*k</code> samples are
+generated, and packed in an <code>m</code>-by-<code>n</code>-by-<code>k</code> arrangement.
+Because
+each sample is <code>N</code>-dimensional, the output shape is <code>(m,n,k,N)</code>.
+If no shape is specified, a single (<code>N</code>-D) sample is returned.</dd>
+<dt><strong><code>check_valid</code></strong> :&ensp;<code>{ 'warn', 'raise', 'ignore' }</code>, optional</dt>
+<dd>Behavior when the covariance matrix is not positive semidefinite.</dd>
+<dt><strong><code>tol</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Tolerance when checking the singular values in covariance matrix.
+cov is cast to double before the check.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>out</code></strong> :&ensp;<code>ndarray</code></dt>
+<dd>
+<p>The drawn samples, of shape <em>size</em>, if that was provided.
+If not,
+the shape is <code>(N,)</code>.</p>
+<p>In other words, each entry <code>out[i,j,...,:]</code> is an N-dimensional
+value drawn from the distribution.</p>
+</dd>
+</dl>
+<h2 id="see-also">See Also</h2>
+<dl>
+<dt><code>Generator.multivariate_normal</code></dt>
+<dd>which should be used for new code.</dd>
+</dl>
+<h2 id="notes">Notes</h2>
+<p>The mean is a coordinate in N-dimensional space, which represents the
+location where samples are most likely to be generated.
+This is
+analogous to the peak of the bell curve for the one-dimensional or
+univariate normal distribution.</p>
+<p>Covariance indicates the level to which two variables vary together.
+From the multivariate normal distribution, we draw N-dimensional
+samples, :math:<code>X = [x_1, x_2, ... x_N]</code>.
+The covariance matrix
+element :math:<code>C_{ij}</code> is the covariance of :math:<code>x_i</code> and :math:<code>x_j</code>.
+The element :math:<code>C_{ii}</code> is the variance of :math:<code>x_i</code> (i.e. its
+"spread").</p>
+<p>Instead of specifying the full covariance matrix, popular
+approximations include:</p>
+<ul>
+<li>Spherical covariance (<code>cov</code> is a multiple of the identity matrix)</li>
+<li>Diagonal covariance (<code>cov</code> has non-negative elements, and only on
+the diagonal)</li>
+</ul>
+<p>This geometrical property can be seen in two dimensions by plotting
+generated data-points:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; mean = [0, 0]
+&gt;&gt;&gt; cov = [[1, 0], [0, 100]]  # diagonal covariance
+</code></pre>
+<p>Diagonal covariance means that points are oriented along x or y-axis:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; import matplotlib.pyplot as plt
+&gt;&gt;&gt; x, y = np.random.multivariate_normal(mean, cov, 5000).T
+&gt;&gt;&gt; plt.plot(x, y, 'x')
+&gt;&gt;&gt; plt.axis('equal')
+&gt;&gt;&gt; plt.show()
+</code></pre>
+<p>Note that the covariance matrix must be positive semidefinite (a.k.a.
+nonnegative-definite). Otherwise, the behavior of this method is
+undefined and backwards compatibility is not guaranteed.</p>
+<h2 id="references">References</h2>
+<p>.. [1] Papoulis, A., "Probability, Random Variables, and Stochastic
+Processes," 3rd ed., New York: McGraw-Hill, 1991.
+.. [2] Duda, R. O., Hart, P. E., and Stork, D. G., "Pattern
+Classification," 2nd ed., New York: Wiley, 2001.</p>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; mean = (1, 2)
+&gt;&gt;&gt; cov = [[1, 0], [0, 1]]
+&gt;&gt;&gt; x = np.random.multivariate_normal(mean, cov, (3, 3))
+&gt;&gt;&gt; x.shape
+(3, 3, 2)
+</code></pre>
+<p>The following is probably true, given that 0.6 is roughly twice the
+standard deviation:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; list((x[0,0,:] - mean) &lt; 0.6)
+[True, True] # random
+</code></pre></div>
+</dd>
+<dt id="src.simple_example.randn"><code class="name flex">
+<span>def <span class="ident">randn</span></span>(<span>...)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>randn(d0, d1, &hellip;, dn)</p>
+<p>Return a sample (or samples) from the "standard normal" distribution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a convenience function for users porting code from Matlab,
+and wraps <code>standard_normal</code>. That function takes a
+tuple to specify the size of the output, which is consistent with
+other NumPy functions like <code>numpy.zeros</code> and <code>numpy.ones</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New code should use the <code>standard_normal</code> method of a <code>default_rng()</code>
+instance instead; please see the :ref:<code>random-quick-start</code>.</p>
+</div>
+<p>If positive int_like arguments are provided, <code><a title="src.simple_example.randn" href="#src.simple_example.randn">RandomState.randn()</a></code> generates an array
+of shape <code>(d0, d1, &hellip;, dn)</code>, filled
+with random floats sampled from a univariate "normal" (Gaussian)
+distribution of mean 0 and variance 1. A single float randomly sampled
+from the distribution is returned if no argument is provided.</p>
+<h2 id="parameters">Parameters</h2>
+<p>d0, d1, &hellip;, dn : int, optional
+The dimensions of the returned array, must be non-negative.
+If no argument is given a single Python float is returned.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>Z</code></strong> :&ensp;<code>ndarray</code> or <code>float</code></dt>
+<dd>A <code>(d0, d1, &hellip;, dn)</code>-shaped array of floating-point samples from
+the standard normal distribution, or a single such float if
+no parameters were supplied.</dd>
+</dl>
+<h2 id="see-also">See Also</h2>
+<dl>
+<dt><code>standard_normal</code></dt>
+<dd>Similar, but takes a tuple as its argument.</dd>
+<dt><code>normal</code></dt>
+<dd>Also accepts mu and sigma arguments.</dd>
+<dt><code>Generator.standard_normal</code></dt>
+<dd>which should be used for new code.</dd>
+</dl>
+<h2 id="notes">Notes</h2>
+<p>For random samples from :math:<code>N(\mu, \sigma^2)</code>, use:</p>
+<p><code>sigma * np.random.randn(...) + mu</code></p>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; np.random.randn()
+2.1923875335537315  # random
+</code></pre>
+<p>Two-by-four array of samples from N(3, 6.25):</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; 3 + 2.5 * np.random.randn(2, 4)
+array([[-4.49401501,  4.00950034, -1.81814867,  7.29718677],   # random
+       [ 0.39924804,  4.68456316,  4.99394529,  4.84057254]])  # random
+</code></pre></div>
+</dd>
+<dt id="src.simple_example.simu_linreg"><code class="name flex">
+<span>def <span class="ident">simu_linreg</span></span>(<span>w0: numpy.ndarray, n_samples: int = 1000, corr: float = 0.5, std: float = 0.5) ‑> Tuple[numpy.ndarray, ...]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Simulation of a linear regression model with Gaussian features and a Toeplitz covariance, with
+Gaussian noise.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>w0</code></strong> :&ensp;<code>numpy.ndarray, shape=(n_features,)</code></dt>
+<dd>Model weights.</dd>
+<dt><strong><code>n_samples</code></strong> :&ensp;<code>int</code>, default=<code>1000</code></dt>
+<dd>Number of samples to simulate.</dd>
+<dt><strong><code>corr</code></strong> :&ensp;<code>float</code>, default=<code>0.5</code></dt>
+<dd>Correlation of the features.</dd>
+<dt><strong><code>std</code></strong> :&ensp;<code>float</code>, default=<code>0.5</code></dt>
+<dd>Standard deviation of the noise.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>X</code></strong> :&ensp;<code>numpy.ndarray, shape=(n_samples, n_features)</code></dt>
+<dd>Simulated features matrix. It contains samples of a centered Gaussian
+vector with Toeplitz
+covariance.</dd>
+<dt><strong><code>y</code></strong> :&ensp;<code>numpy.ndarray, shape=(n_samples,)</code></dt>
+<dd>Simulated labels.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def simu_linreg(w0: np.ndarray, n_samples: int = 1000, corr: float = 0.5,
+                std: float = 0.5) -&gt; Tuple[np.ndarray, ...]:
+    &#34;&#34;&#34;
+    Simulation of a linear regression model with Gaussian features and a Toeplitz covariance, with
+    Gaussian noise.
+
+    Parameters
+    ----------
+    w0 : numpy.ndarray, shape=(n_features,)
+        Model weights.
+
+    n_samples : int, default=1000
+        Number of samples to simulate.
+
+    corr : float, default=0.5
+        Correlation of the features.
+
+    std : float, default=0.5
+        Standard deviation of the noise.
+
+    Returns
+    -------
+    X : numpy.ndarray, shape=(n_samples, n_features)
+        Simulated features matrix. It contains samples of a centered Gaussian  vector with Toeplitz
+        covariance.
+
+    y : numpy.ndarray, shape=(n_samples,)
+        Simulated labels.
+    &#34;&#34;&#34;
+    n_features = w0.shape[0]
+
+    # Construction of a covariance matrix
+    cov = toeplitz(corr ** np.arange(0, n_features))
+
+    # Simulation of features
+    X = multivariate_normal(np.zeros(n_features), cov, size=n_samples)
+
+    # Simulation of the labels
+    y = X.dot(w0) + std * randn(n_samples)
+
+    return X, y</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="src.simple_example.Server"><code class="flex name class">
+<span>class <span class="ident">Server</span></span>
+<span>(</span><span>workers: List[<a title="src.simple_example.Worker" href="#src.simple_example.Worker">Worker</a>], batch_size: int = 8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Simulate a server instance that gathers a list of workers.</p>
+<p>Initialize the server.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>workers</code></strong> :&ensp;<code>List[</code>Worker<code>]</code></dt>
+<dd>List of workers instances.</dd>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code>, default=<code>8</code></dt>
+<dd>Batch size.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Server:
+    &#34;&#34;&#34;Simulate a server instance that gathers a list of workers.&#34;&#34;&#34;
+
+    def __init__(self, workers: List[Worker], batch_size: int = 8):
+        &#34;&#34;&#34;
+        Initialize the server.
+
+        Parameters
+        ----------
+        workers : List[`Worker`]
+            List of workers instances.
+
+        batch_size : int, default=8
+            Batch size.
+        &#34;&#34;&#34;
+        self.workers = workers
+        self.M = len(workers)
+
+        self.batch_size = batch_size
+
+    def aggregate_sign(self, workers_sg: np.ndarray) -&gt; int:
+        &#34;&#34;&#34;
+        Aggregate gradients signs of workers and compute final sign.
+
+        Parameters
+        ----------
+        workers_sg : np.ndarray
+            Gradients signs of workers.
+
+        Returns
+        -------
+        sg_V : int
+            Sign of aggregated workers signs.
+        &#34;&#34;&#34;
+        V = 0.
+
+        assert len(workers_sg) == self.M
+
+        for m in range(self.M):
+
+            V += workers_sg[m]
+
+        sg_V = 2*(V &gt;= 0) - 1
+
+        return sg_V
+
+    def step(self, grad_fn: Callable, workers_inputs: List[Tuple[np.ndarray, ...]]):
+        &#34;&#34;&#34;
+        Run a step of optimization.
+
+        Parameters
+        ----------
+        grad_fn : Callable
+            Function that computes the gradient.
+
+        workers_inputs : List[np.ndarray]
+            Input data for each worker.
+        &#34;&#34;&#34;
+        assert len(workers_inputs) == self.M
+
+        # Compute batch gradient on each worker
+        workers_sg = np.zeros(self.M)
+
+        for m in range(self.M):
+
+            workers_sg[m] = self.workers[m].compute_sign(grad_fn, workers_inputs[m])
+
+        # Aggregate signs
+        sg_V = self.aggregate_sign(workers_sg)
+
+        # Update x on each worker
+        for m in range(self.M):
+
+            self.workers[m].update(sg_V)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.simple_example.Server.aggregate_sign"><code class="name flex">
+<span>def <span class="ident">aggregate_sign</span></span>(<span>self, workers_sg: numpy.ndarray) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Aggregate gradients signs of workers and compute final sign.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>workers_sg</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>Gradients signs of workers.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>sg_V</code></strong> :&ensp;<code>int</code></dt>
+<dd>Sign of aggregated workers signs.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def aggregate_sign(self, workers_sg: np.ndarray) -&gt; int:
+    &#34;&#34;&#34;
+    Aggregate gradients signs of workers and compute final sign.
+
+    Parameters
+    ----------
+    workers_sg : np.ndarray
+        Gradients signs of workers.
+
+    Returns
+    -------
+    sg_V : int
+        Sign of aggregated workers signs.
+    &#34;&#34;&#34;
+    V = 0.
+
+    assert len(workers_sg) == self.M
+
+    for m in range(self.M):
+
+        V += workers_sg[m]
+
+    sg_V = 2*(V &gt;= 0) - 1
+
+    return sg_V</code></pre>
+</details>
+</dd>
+<dt id="src.simple_example.Server.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, grad_fn: Callable, workers_inputs: List[Tuple[numpy.ndarray, ...]])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Run a step of optimization.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>grad_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Function that computes the gradient.</dd>
+<dt><strong><code>workers_inputs</code></strong> :&ensp;<code>List[np.ndarray]</code></dt>
+<dd>Input data for each worker.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def step(self, grad_fn: Callable, workers_inputs: List[Tuple[np.ndarray, ...]]):
+    &#34;&#34;&#34;
+    Run a step of optimization.
+
+    Parameters
+    ----------
+    grad_fn : Callable
+        Function that computes the gradient.
+
+    workers_inputs : List[np.ndarray]
+        Input data for each worker.
+    &#34;&#34;&#34;
+    assert len(workers_inputs) == self.M
+
+    # Compute batch gradient on each worker
+    workers_sg = np.zeros(self.M)
+
+    for m in range(self.M):
+
+        workers_sg[m] = self.workers[m].compute_sign(grad_fn, workers_inputs[m])
+
+    # Aggregate signs
+    sg_V = self.aggregate_sign(workers_sg)
+
+    # Update x on each worker
+    for m in range(self.M):
+
+        self.workers[m].update(sg_V)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.simple_example.Worker"><code class="flex name class">
+<span>class <span class="ident">Worker</span></span>
+<span>(</span><span>x: numpy.ndarray, batch_size: int = 8, lr: float = 0.0001, beta: float = 0.9, weight_decay: float = 0.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Simulate a worker.</p>
+<p>Initialize a worker instance.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>x</code></strong> :&ensp;<code>np.ndarray</code></dt>
+<dd>Initial value.</dd>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code>, default=<code>8</code></dt>
+<dd>Batch size.</dd>
+<dt><strong><code>lr</code></strong> :&ensp;<code>float</code>, default=<code>1e-4</code></dt>
+<dd>Learning rate.</dd>
+<dt><strong><code>beta</code></strong> :&ensp;<code>float</code>, default=<code>0.9</code></dt>
+<dd>Momentum.</dd>
+</dl>
+<p>weight_decay : float, default=0.
+Weight decay for the optimizer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Worker:
+    &#34;&#34;&#34;Simulate a worker.&#34;&#34;&#34;
+
+    def __init__(self, x: np.ndarray, batch_size: int = 8, lr: float = 1e-4, beta: float = 0.9,
+                 weight_decay: float = 0.):
+        &#34;&#34;&#34;
+        Initialize a worker instance.
+
+        Parameters
+        ----------
+        x : np.ndarray
+            Initial value.
+
+        batch_size : int, default=8
+            Batch size.
+
+        lr : float, default=1e-4
+            Learning rate.
+
+        beta : float, default=0.9
+            Momentum.
+
+        weight_decay : float, default=0.
+            Weight decay for the optimizer.
+        &#34;&#34;&#34;
+        self.x = x
+
+        self.batch_size = batch_size
+
+        self.beta = beta
+        self.lr = lr
+        self.weight_decay = weight_decay
+
+        self.v_m = 0.
+
+    def compute_sign(self, grad_fn: Callable, inputs: Tuple[np.ndarray, ...]) -&gt; int:
+        &#34;&#34;&#34;Compute sign of gradients wrt a batch of data.
+
+        Parameters
+        ----------
+        grad_fn : Callable
+            Function that computed the gradient.
+
+        inputs : Tuple[np.ndarray, ...]
+            Input data.
+
+        Returns
+        -------
+        sg_v_m : int
+            Sign of gradients, as a result of Signum algorithm.
+        &#34;&#34;&#34;
+        g_m = np.zeros(self.batch_size)
+        for i in range(self.batch_size):
+            g_m += grad_fn(inputs, self.x)
+        g_m = np.mean(g_m)
+
+        self.v_m = (1 - self.beta)*g_m + self.beta*self.v_m
+        sg_v_m = 2*(self.v_m &gt;= 0) - 1
+
+        return sg_v_m
+
+    def update(self, sg_V: int):
+        &#34;&#34;&#34;
+        Update **x** with computed sign.
+
+        Parameters
+        ----------
+        sg_V : int
+            Sign as gathered in the server.
+        &#34;&#34;&#34;
+        self.x -= self.lr * (sg_V + self.weight_decay*self.x)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.simple_example.Worker.compute_sign"><code class="name flex">
+<span>def <span class="ident">compute_sign</span></span>(<span>self, grad_fn: Callable, inputs: Tuple[numpy.ndarray, ...]) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute sign of gradients wrt a batch of data.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>grad_fn</code></strong> :&ensp;<code>Callable</code></dt>
+<dd>Function that computed the gradient.</dd>
+<dt><strong><code>inputs</code></strong> :&ensp;<code>Tuple[np.ndarray, &hellip;]</code></dt>
+<dd>Input data.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>sg_v_m</code></strong> :&ensp;<code>int</code></dt>
+<dd>Sign of gradients, as a result of Signum algorithm.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_sign(self, grad_fn: Callable, inputs: Tuple[np.ndarray, ...]) -&gt; int:
+    &#34;&#34;&#34;Compute sign of gradients wrt a batch of data.
+
+    Parameters
+    ----------
+    grad_fn : Callable
+        Function that computed the gradient.
+
+    inputs : Tuple[np.ndarray, ...]
+        Input data.
+
+    Returns
+    -------
+    sg_v_m : int
+        Sign of gradients, as a result of Signum algorithm.
+    &#34;&#34;&#34;
+    g_m = np.zeros(self.batch_size)
+    for i in range(self.batch_size):
+        g_m += grad_fn(inputs, self.x)
+    g_m = np.mean(g_m)
+
+    self.v_m = (1 - self.beta)*g_m + self.beta*self.v_m
+    sg_v_m = 2*(self.v_m &gt;= 0) - 1
+
+    return sg_v_m</code></pre>
+</details>
+</dd>
+<dt id="src.simple_example.Worker.update"><code class="name flex">
+<span>def <span class="ident">update</span></span>(<span>self, sg_V: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update <strong>x</strong> with computed sign.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sg_V</code></strong> :&ensp;<code>int</code></dt>
+<dd>Sign as gathered in the server.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update(self, sg_V: int):
+    &#34;&#34;&#34;
+    Update **x** with computed sign.
+
+    Parameters
+    ----------
+    sg_V : int
+        Sign as gathered in the server.
+    &#34;&#34;&#34;
+    self.x -= self.lr * (sg_V + self.weight_decay*self.x)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src" href="index.html">src</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="src.simple_example.grad_linreg" href="#src.simple_example.grad_linreg">grad_linreg</a></code></li>
+<li><code><a title="src.simple_example.multivariate_normal" href="#src.simple_example.multivariate_normal">multivariate_normal</a></code></li>
+<li><code><a title="src.simple_example.randn" href="#src.simple_example.randn">randn</a></code></li>
+<li><code><a title="src.simple_example.simu_linreg" href="#src.simple_example.simu_linreg">simu_linreg</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="src.simple_example.Server" href="#src.simple_example.Server">Server</a></code></h4>
+<ul class="">
+<li><code><a title="src.simple_example.Server.aggregate_sign" href="#src.simple_example.Server.aggregate_sign">aggregate_sign</a></code></li>
+<li><code><a title="src.simple_example.Server.step" href="#src.simple_example.Server.step">step</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.simple_example.Worker" href="#src.simple_example.Worker">Worker</a></code></h4>
+<ul class="">
+<li><code><a title="src.simple_example.Worker.compute_sign" href="#src.simple_example.Worker.compute_sign">compute_sign</a></code></li>
+<li><code><a title="src.simple_example.Worker.update" href="#src.simple_example.Worker.update">update</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

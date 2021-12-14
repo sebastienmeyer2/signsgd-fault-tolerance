@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>src API documentation</title>
+<meta name="description" content="Source code for our evaluation of Signum against blind and Byzantine adversaries …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>src</code></h1>
+</header>
+<section id="section-intro">
+<p>Source code for our evaluation of Signum against blind and Byzantine adversaries.</p>
+<h1 id="signsgd-blind-and-byzantine-adversaries-tolerance">SignSGD: Blind and Byzantine adversaries tolerance</h1>
+<p>In this project, we implement the Signum algorithm as described by Bernstein, Wang, Azizzadenesheli and Anandkumar in their 2018 paper <em>SignSGD: Compressed Optimisation for Non-Convex Problems</em>. The 2019 paper <em>SignSGD with Majority Vote is Communication Efficient and Fault Tolerant</em> from Bernstein, Zhao, Azizzadenesheli and Anandkumar also extends the properties of Signum by adding tolerance to blind adversaries. Our simple implementation aims at assessing the convergence and fault-tolerance of Signum. Therefore, we are evaluating how Signum might be able to resist to attacks from Byzantine adversaries.</p>
+<p>Please refer to the following sections for more information:</p>
+<ol>
+<li><a href="#package-usage">Usage</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#our-results">Results</a></li>
+</ol>
+<h2 id="package-usage">Package usage</h2>
+<h3 id="model-training-and-evaluation">Model training and evaluation</h3>
+<p>Everything is handled by the <em>src/main.py</em> file. The following command allows to run some models:</p>
+<p><code>python3 src/main.py &lt;nprocs&gt; &lt;data_type&gt; [options]</code></p>
+<ul>
+<li><code>&lt;nprocs&gt;</code>: Number of processes to run.</li>
+<li><code>&lt;data_type&gt;</code>: Supported datasets: LinReg, LogReg, MNIST and ImageNet.</li>
+<li><code>-s</code>: Fix a global seed. Default: 42.</li>
+<li><code>-i</code>: Choose a NUMBER of blind adversaries inverting their gradients signs. Default: 0.</li>
+<li><code>-b</code>: Choose a NUMBER of Byzantine adversaries. Default: 0.</li>
+<li><code>-n</code>: Choose a specific neural network. Available neural networks are gathered in the <em>src/nn/</em> subfolder. For MNIST dataset, you can either use TorchNet, which is the tutorial net from PyTorch or MNISTNet, which is our own net. For LinReg/LogReg, only LinRegNet/LogRegNet is available and consists in a feed-forward network. Finally, ImageNet supports ResNetX with X=18 or X=50. Default: MNISTNet. </li>
+<li><code>-o</code>: Choose a speficic distributed optimizer between DistSGD, SignSGD and Signum. Available optimizers are gathered in the <em>src/optim/</em> subfolder. Default: Signum.</li>
+<li><code>-e</code>: Number of training epochs. Default: 10.</li>
+<li><code>-m</code>: If True, will save the loss (and accuracy in case of classification) in a <em>results/</em> subfolder. Default: True.</li>
+<li><code>-v</code>: If True, will print progress bars and epoch metrics for each process, otherwise will do it only for the rank 0 process. Default: False.</li>
+</ul>
+<h3 id="plotting-your-results">Plotting your results</h3>
+<p>A second file allows to plot comparative graphs of your trained models. The command is as follows:</p>
+<p><code>python3 src/plot_results.py &lt;nprocs&gt; &lt;data_type&gt; [options] &lt;subcommands&gt; [suboptions]</code></p>
+<ul>
+<li><code>&lt;nprocs&gt;</code>: Number of processes to run.</li>
+<li><code>&lt;data_type&gt;</code>: Supported datasets: LinReg, LogReg, MNIST and ImageNet.</li>
+<li><code>-n</code>: Choose a specific neural network. Available neural networks are gathered in the <em>src/nn/</em> subfolder. For MNIST dataset, you can either use TorchNet, which is the tutorial net from PyTorch or MNISTNet, which is our own net. For LinReg/LogReg, only LinRegNet/LogRegNet is available and consists in a feed-forward network. Finally, ImageNet supports ResNetX with X=18 or X=50. Default: MNISTNet. </li>
+<li><code>-o</code>: Choose a speficic distributed optimizer between DistSGD, SignSGD and Signum. Available optimizers are gathered in the <em>src/optim/</em> subfolder. Default: Signum.</li>
+<li><code>&lt;subcommands&gt;</code>: If you want to plot a metric for only one run, use Plot, otherwise you can compare the results for several numbers of adversaries with Comparison</li>
+<li><code>&lt;metric&gt;</code>: Choose the metric to be plotted. It can be either the Loss or the Accuracy (if the task is a classification task). </li>
+<li>Plot <code>-i</code>: Choose a NUMBER of blind adversaries inverting their gradients signs. Default: 0.</li>
+<li>Plot <code>-b</code>: Choose a NUMBER of Byzantine adversaries. Default: 0.</li>
+<li>Comparison <code>-c</code>: Type NUMBERS of blind adversaries to compare. You should separate each proportion with a ",". Example: "0,6". Default: "0".</li>
+<li>Plot <code>-d</code>: Choose NUMBERS of Byzantine adversaries. You should separate each value with a ",". Example: "0,1,2".</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<p>A complete documentation is available in the <em>doc/src/</em> folder. If it is not
+generated, you can run from the root folder:</p>
+<p><code>python3 -m pdoc -o doc/ --html --config latex_math=True --force src/</code></p>
+<p>Then, open <em>doc/src/index.html</em> in your browser and follow the guide!</p>
+<h2 id="results">Results</h2>
+<p>We have compared the ability of SignSGD and Signum to converge in terms of loss in the case of linear regression. The linear regression dataset is simulated from noisy gaussian parameters.</p>
+<h3 id="convergence-without-adversaries">Convergence without adversaries</h3>
+<p>Here, we show the evolution of the loss wrt the number of training epochs for DistSGD:</p>
+<p><img alt="alt text" src="figures/distsgd_loss_base.jpg"></p>
+<p>We then compare it with the evolution of the loss for SignSGD (results are similar for Signum):</p>
+<p><img alt="alt text" src="figures/signsgd_loss_base.jpg"></p>
+<p>We observe that, in the case of our linear regression dataset, usual SGD algorithm converges faster than SignSGD, however both algorithms manage to reach a very small loss error.</p>
+<h3 id="convergence-with-blind-adversaries">Convergence with blind adversaries</h3>
+<p>The blind adversaries, as defined by the authors, are taking the inverse sign of their gradients at each iteration. We can see the effect of such a behavior in the case of DistSGD:</p>
+<p><img alt="alt text" src="figures/distsgd_loss_blind.jpg"></p>
+<p>Again, we make the comparison
+with SignSGD:</p>
+<p><img alt="alt text" src="figures/signsgd_loss_blind.jpg"></p>
+<p>And here, Signum yields different results:</p>
+<p><img alt="alt text" src="figures/signum_loss_blind.jpg"></p>
+<p>We clearly see that the effect of blind adversaries on DistSGD is more important than in the case of SignSGD. Despite the fact that SignSGD converges generally slower than DistSGD, it can catch up in the case of around 40% of blind adversaries. Also, Signum offers more stability than SignSGD, thanks to the momentum.</p>
+<h3 id="convergence-with-byzantine-adversaries">Convergence with Byzantine adversaries</h3>
+<p>It is clear that a simple Byzantine strategy in the case of Distributed SGD is to send the opposite of the sum of the gradients of all other workers. However, such a strategy cannot be successful in the case of SignSGD. Therefore, the Byzantine strategy that we propose is as follows: Byzantine adversaries are aware of all the gradients signs of all workers. They can compute the majority vote of the non-Byzantine workers and estimate how to kill the gradient. Indeed, they can try to bring the majority vote as close to zero as possible, and then oscillate around it. The results for DistSGD are clear:</p>
+<p><img alt="alt text" src="figures/distsgd_loss_byz.jpg"></p>
+<p>Then, we can compare the effect of different numbers of Byzantine adversaries in the case of SignSGD:</p>
+<p><img alt="alt text" src="figures/signsgd_loss_byz.jpg"></p>
+<p>And for Signum:</p>
+<p><img alt="alt text" src="figures/signum_loss_byz.jpg"></p>
+<p>Our results are similar to those obtained in the case of blind adversaries. Thus, it seems that our Byzantine strategy did not manage to counter the SignSGD algorithm.</p>
+<h2 id="references">References</h2>
+<p>[1] Jeremy Bernstein, Yu-Xiang Wang, Kamyar Azizzadenesheli and Anima Anandkumar. <strong>SignSGD: Compressed Optimisation for Non-Convex Problems.</strong> August 2018.</p>
+<p>[2] Jeremy Bernstein, Jiawei Zhao, Kamyar Azizzadenesheli and Anima Anandkumar. <strong>SignSGD with Majority Vote is Communication Efficient and Fault Tolerant.</strong> February 2019.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Source code for our evaluation of Signum against blind and Byzantine adversaries.
+
+..include:: ../README.md
+&#34;&#34;&#34;
+
+# Import Python packages
+import os
+import sys
+
+
+# Global variables
+SRC_PATH = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(SRC_PATH)  # trick to make pdoc3 understand that this is the package src folder</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="src.main" href="main.html">src.main</a></code></dt>
+<dd>
+<div class="desc"><p>Main file to train and evaluate models with distributed optimizers such as Signum.</p></div>
+</dd>
+<dt><code class="name"><a title="src.model_training" href="model_training.html">src.model_training</a></code></dt>
+<dd>
+<div class="desc"><p>Training and evaluation functions are gathered in this file.</p></div>
+</dd>
+<dt><code class="name"><a title="src.nn" href="nn/index.html">src.nn</a></code></dt>
+<dd>
+<div class="desc"><p>Contains various neural networks adapted to specific datasets.</p></div>
+</dd>
+<dt><code class="name"><a title="src.optim" href="optim/index.html">src.optim</a></code></dt>
+<dd>
+<div class="desc"><p>Contains custom distributed optimizers.</p></div>
+</dd>
+<dt><code class="name"><a title="src.plot_results" href="plot_results.html">src.plot_results</a></code></dt>
+<dd>
+<div class="desc"><p>Utilitary functions that allow to plot results.</p></div>
+</dd>
+<dt><code class="name"><a title="src.simple_example" href="simple_example.html">src.simple_example</a></code></dt>
+<dd>
+<div class="desc"><p>A simple example to show that Signum is converging.</p></div>
+</dd>
+<dt><code class="name"><a title="src.utils" href="utils.html">src.utils</a></code></dt>
+<dd>
+<div class="desc"><p>Gather utilitary functions for randomness control and data handling.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="src.main" href="main.html">src.main</a></code></li>
+<li><code><a title="src.model_training" href="model_training.html">src.model_training</a></code></li>
+<li><code><a title="src.nn" href="nn/index.html">src.nn</a></code></li>
+<li><code><a title="src.optim" href="optim/index.html">src.optim</a></code></li>
+<li><code><a title="src.plot_results" href="plot_results.html">src.plot_results</a></code></li>
+<li><code><a title="src.simple_example" href="simple_example.html">src.simple_example</a></code></li>
+<li><code><a title="src.utils" href="utils.html">src.utils</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
