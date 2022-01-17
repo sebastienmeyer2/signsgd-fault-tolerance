@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>src.dist_training API documentation</title>
+<meta name="description" content="Training and evaluation functions are gathered in this file." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.dist_training</code></h1>
+</header>
+<section id="section-intro">
+<p>Training and evaluation functions are gathered in this file.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Training and evaluation functions are gathered in this file.&#34;&#34;&#34;
+
+
+import os
+
+from typing import Dict, List, Optional, Tuple
+
+from tqdm import tqdm
+
+import numpy as np
+import pandas as pd
+
+import torch
+import torch.distributed as dist
+from torch.nn import Module
+from torch.optim import Optimizer
+from torch.optim.lr_scheduler import StepLR
+from torch.utils.data import DataLoader, Dataset
+
+
+def train_eval_dist(rank: int, world_size: int, trainset: Dataset, testset: Optional[Dataset],
+                    model: Module, loss_fn: Module, optimizer: Optimizer, lr_decay_step: int = 30,
+                    lr_decay_rate: float = 0.1, batch_size: int = 64, n_epochs: int = 10,
+                    task: str = &#34;classification&#34;, save_loss: bool = True, save_acc: bool = True,
+                    folder_name: str = &#34;tmp&#34;, verbose: int = 1):
+    &#34;&#34;&#34;Train the **model** with given **rank** process.
+
+    Parameters
+    ----------
+    rank : int
+        Rank of current process.
+
+    world_size : int
+        Total amount of processes.
+
+    trainset : torch.utils.data.Dataset
+        A dataloader instance for the training samples.
+
+    testset : torch.utils.data.Dataset, optional
+        A dataloader instance for the test samples.
+
+    model : torch.nn.Module
+        A neural network to be trained and evaluated on the datasets.
+
+    loss_fn : torch.nn.Module
+        A loss function.
+
+    optimizer : torch.optim.Optimizer
+        An optimizer to train the model with.
+
+    lr_decay_step : int, default=30
+        Number of steps between each modification of the learning rate.
+
+    lr_decay_rate : float, default=0.1
+        Value by which the learning rate is multiplied every *lr_decay_step*.
+
+    batch_size : int, default=64
+        Training and test batch size.
+
+    n_epochs : int, default=10
+        Number of training epochs.
+
+    task : {&#34;classification&#34;, &#34;regression&#34;}, default=&#34;classification&#34;
+        If &#34;classification&#34; task, will compute the accuracy, otherwise only the loss.
+
+    save_loss : bool, default=True
+        If True, training and test loss for each epoch and rank will be saved in csv files.
+
+    save_acc : bool, default=True
+        If True, training and test accuracy for each epoch and rank will be saved in csv files.
+
+    folder_name : str, default=&#34;tmp&#34;
+        Specific name for the folder to save scores results.
+
+    verbose : {0, 1, 2}, default=1
+        If 2, will print all metrics of all processes along epochs. If 1, will only show a
+        progress bar for the rank 0 process with server&#39;s scores. If 0, will only show a simple
+        progress bar.
+    &#34;&#34;&#34;
+    # Build up a dataloader
+    trainloader = DataLoader(trainset, batch_size=batch_size)
+
+    # Learning rate scheduler (improve learning)
+    scheduler = StepLR(optimizer, step_size=lr_decay_step, gamma=lr_decay_rate)
+    current_lr = scheduler.get_last_lr()[0]
+
+    # Metrics lists
+    train_loss_value = -1
+    train_loss_list = []
+
+    train_loss_epoch = -1
+    test_loss_epoch = -1
+    loss_list = []
+
+    train_acc_value = -1
+    train_acc_list = []
+
+    train_acc_epoch = -1
+    test_acc_epoch = -1
+    acc_list = []
+
+    # Progress bar
+    if verbose in {1, 2} and rank == 0:  # show a progress bar for the server
+
+        pbar = tqdm(range(n_epochs), desc=f&#34;Rank 0/{world_size-1}; LR {current_lr}; First epoch...&#34;)
+
+    elif verbose == 0 and rank == 0:  # show a simple progress bar
+
+        pbar = tqdm(range(n_epochs))
+
+    else:
+
+        pbar = range(n_epochs)
+
+    # Start training
+    for epoch in pbar:
+
+        # Training epoch
+        model.train()
+
+        for x_train, y_train in trainloader:
+
+            # Setting grad to zero
+            optimizer.zero_grad()
+
+            # Model output &amp; loss
+            y_lsm_pred = model(x_train)
+            if task == &#34;classification&#34;:
+                train_loss = loss_fn(y_lsm_pred, y_train.flatten())
+            else:
+                train_loss = loss_fn(y_lsm_pred.flatten(), y_train.flatten())
+
+            # Optimization step
+            train_loss.backward()
+
+            optimizer.step()
+
+            # Compute scores on training set
+            train_loss_value = train_loss.item()
+            train_loss_list.append(train_loss_value)
+
+            if task == &#34;classification&#34;:
+                y_pred = torch.argmax(y_lsm_pred, dim=1)
+                train_acc_value = np.sum((y_pred == y_train.flatten()).detach().numpy())
+                train_acc_list.append(train_acc_value)
+
+        # Update the learning rate
+        scheduler.step()
+        current_lr = scheduler.get_last_lr()[0]
+
+        # After each training epoch, we evaluate the model, which is common to all processes
+        if testset is not None and (rank == 0 or verbose == 2):
+
+            test_loss_epoch, test_acc_epoch = eval_dist(model, testset, loss_fn,
+                                                        batch_size=batch_size, task=task)
+
+        dist.barrier()  # make sure that all the processes are here after evaluation
+
+        # Append the computed scores
+        train_loss_epoch = np.mean(train_loss_list)
+        train_loss_list = []
+        loss_list.append([epoch+1, train_loss_epoch, test_loss_epoch])
+
+        if task == &#34;classification&#34;:
+            train_acc_epoch = np.sum(train_acc_list)/len(trainset)
+            train_acc_list = []
+            acc_list.append([epoch+1, train_acc_epoch, test_acc_epoch])
+
+        # If we want to print training information, we have to get the scores to the server
+        if verbose in {1, 2}:
+
+            all_scores = torch.zeros([world_size, 4])
+
+            if rank != 0:
+
+                all_scores[rank][0] = train_loss_epoch
+                all_scores[rank][1] = test_loss_epoch
+                all_scores[rank][2] = train_acc_epoch
+                all_scores[rank][3] = test_acc_epoch
+
+                dist.send(all_scores[rank], 0)
+
+            else:
+
+                all_scores[rank][0] = train_loss_epoch
+                all_scores[rank][1] = test_loss_epoch
+                all_scores[rank][2] = train_acc_epoch
+                all_scores[rank][3] = test_acc_epoch
+
+                for worker in range(1, world_size):
+
+                    dist.recv(all_scores[worker], src=worker)
+
+            dist.barrier()  # wait for the server to know about others&#39; scores
+
+            # Update the progress bar to show current mean scores
+            if rank == 0:
+
+                # Compute mean training scores
+                mean_train_loss_epoch = 0.
+                mean_train_acc_epoch = 0.
+
+                for worker in range(world_size):
+
+                    mean_train_loss_epoch += all_scores[worker][0].item()
+                    mean_train_acc_epoch += all_scores[worker][2].item()
+
+                mean_train_loss_epoch /= world_size
+                mean_train_acc_epoch /= world_size
+
+                # Update the progress bar
+                msg_server = f&#34;Epoch {epoch}; LR {current_lr};&#34;
+                msg_server += f&#34; Mean training loss {np.around(mean_train_loss_epoch, 4)};&#34;
+                msg_server += f&#34; Test loss {np.around(test_loss_epoch, 4)};&#34;
+                if task == &#34;classification&#34;:
+                    msg_server += f&#34; Mean training acc. {np.around(mean_train_acc_epoch, 4)};&#34;
+                    msg_server += f&#34; Test acc. {np.around(test_acc_epoch, 4)}&#34;
+                pbar.set_description(msg_server)
+
+            # If verbose is 2, print a summary of all processes current scores
+            if verbose == 2:
+
+                if rank == 0:
+
+                    msg_server = &#34;\n\n&#34;
+
+                    for worker in range(world_size):
+
+                        msg_worker = f&#34;Rank {worker}/{world_size-1}; Epoch {epoch};&#34;
+                        msg_worker += \
+                            f&#34; Training loss {np.around(all_scores[worker][0].item(), 4)};&#34;
+                        msg_worker += f&#34; Test loss {np.around(all_scores[worker][1].item(), 4)};&#34;
+                        if task == &#34;classification&#34;:
+                            msg_worker += \
+                                f&#34; Training accuracy {np.around(all_scores[worker][2].item(), 4)};&#34;
+                            msg_worker += \
+                                f&#34; Test accuracy {np.around(all_scores[worker][3].item(), 4)}&#34;
+                        msg_server += msg_worker + &#34;\n&#34;
+
+                    print(msg_server)
+
+                dist.barrier()  # wait for the server to print the scores
+
+    # Saving scores
+    byz_size = optimizer.get_byz_size()
+    blind_size = optimizer.get_blind_size()
+    metrics_scores = {}
+
+    if save_loss:
+        metrics_scores[&#34;loss&#34;] = loss_list
+
+    if task == &#34;classification&#34; and save_acc:
+        metrics_scores[&#34;acc&#34;] = acc_list
+
+    save_metrics(rank, world_size, blind_size, byz_size, metrics_scores, folder_name,
+                 verbose=verbose)
+
+    dist.barrier()  # wait for all processes to finish
+
+
+def eval_dist(model: Module, testset: Dataset, loss_fn: Module, batch_size: int = 64,
+              task: str = &#34;classification&#34;) -&gt; Tuple[float]:
+    &#34;&#34;&#34;Evaluate a model in a distributed setting.
+
+    Parameters
+    ----------
+    model : torch.nn.Module
+        A neural network to be evaluated.
+
+    testset : torch.utils.data.Dataset
+        A dataloader instance for the test samples.
+
+    loss_fn : torch.nn.Module
+        A loss function.
+
+    batch_size : int, default=64
+        Training and test batch size.
+
+    task : {&#34;classification&#34;, &#34;regression&#34;}, default=&#34;classification&#34;
+        If &#34;classification&#34; task, will compute the accuracy, otherwise only the loss.
+
+    Returns
+    -------
+    test_loss : float
+        Value of the loss of the **model** on test samples.
+
+    test_acc : float
+        Value of the accuracy of the **model** on test samples.
+    &#34;&#34;&#34;
+    # Build a dataloader
+    testloader = DataLoader(testset, batch_size=batch_size)
+
+    model.eval()
+
+    test_loss_list = []
+    test_acc_list = []
+
+    for x_test, y_test in testloader:
+
+        # Model output &amp; loss
+        y_lsm_pred = model(x_test)
+
+        if task == &#34;classification&#34;:
+            test_loss = loss_fn(y_lsm_pred, y_test.flatten())
+        else:
+            test_loss = loss_fn(y_lsm_pred.flatten(), y_test.flatten())
+
+        # Compute loss on test
+        test_loss_value = test_loss.item()
+        test_loss_list.append(test_loss_value)
+
+        # Compute accuracy on test
+        if task == &#34;classification&#34;:
+            y_pred = torch.argmax(y_lsm_pred, dim=1)
+            test_acc_value = np.sum((y_pred == y_test.flatten()).detach().numpy())
+            test_acc_list.append(test_acc_value)
+
+    test_loss = np.mean(test_loss_list) if len(test_loss_list) &gt; 0 else -1
+    test_acc = np.sum(test_acc_list)/len(testset) if len(test_acc_list) &gt; 0 else -1
+
+    model.train()
+
+    return test_loss, test_acc
+
+
+def save_metrics(rank: int, world_size: int, blind_size: int, byz_size: int,
+                 metrics_scores: Dict[str, List[float]], folder_name: str, verbose: int = 1):
+    &#34;&#34;&#34;Write a csv file for each metric computed.
+
+    Parameters
+    ----------
+    rank : int
+        Rank of current process.
+
+    world_size : int
+        Total amount of processes.
+
+    blind_size : int
+        Number of blind adversaries inverting their gradient signs.
+
+    byz_size : int
+        Number of Byzantines adversaries.
+
+    metrics_scores : dict
+        A dictionary whose keys are the saved metrics and values are the list of training and test
+        scores. Therefore, the values of the dictionary must be arrays of dimension 3.
+
+    folder_name : str
+        Specific name for the folder to save scores results.
+
+    verbose : {0, 1, 2}, default=1
+        If 2, will save all scores of all processes along epochs. If 0 or 1, will only save
+        the scores of the server.
+    &#34;&#34;&#34;
+    for metric, metric_scores in metrics_scores.items():
+
+        metric_col = [&#34;Epoch&#34;, f&#34;Training {metric}&#34;, f&#34;Test {metric}&#34;]
+        metric_df = pd.DataFrame(metric_scores, columns=metric_col)
+
+        # Create necessary folders
+        scores_folder = &#34;results/&#34;
+
+        if rank == 0:
+            if not os.path.exists(scores_folder):
+                os.makedirs(scores_folder)
+        dist.barrier()  # problems can occur if multiple processes run makedirs in parallel
+
+        scores_folder += folder_name + &#34;/&#34;
+
+        if rank == 0:
+            if not os.path.exists(scores_folder):
+                os.makedirs(scores_folder)
+        dist.barrier()  # problems can occur if multiple processes run makedirs in parallel
+
+        scores_folder += &#34;n&#34; + str(world_size) + &#34;_byz&#34; + str(byz_size) + &#34;_inv&#34; + \
+            str(blind_size) + &#34;/&#34;
+
+        if rank == 0:
+            if not os.path.exists(scores_folder):
+                os.makedirs(scores_folder)
+        dist.barrier()  # problems can occur if multiple processes run makedirs in parallel
+
+        # Save in csv format
+        path_to_metric = scores_folder + metric + &#34;_p&#34; + str(rank) + &#34;.csv&#34;
+
+        if verbose == 2 or rank == 0:
+
+            metric_df.to_csv(path_to_metric, columns=metric_df.columns, header=True, index=False)
+
+        dist.barrier()  # make sure that all processes have saved their scores</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="src.dist_training.eval_dist"><code class="name flex">
+<span>def <span class="ident">eval_dist</span></span>(<span>model: torch.nn.modules.module.Module, testset: torch.utils.data.dataset.Dataset, loss_fn: torch.nn.modules.module.Module, batch_size: int = 64, task: str = 'classification') ‑> Tuple[float]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Evaluate a model in a distributed setting.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>A neural network to be evaluated.</dd>
+<dt><strong><code>testset</code></strong> :&ensp;<code>torch.utils.data.Dataset</code></dt>
+<dd>A dataloader instance for the test samples.</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>A loss function.</dd>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code>, default=<code>64</code></dt>
+<dd>Training and test batch size.</dd>
+<dt><strong><code>task</code></strong> :&ensp;<code>{"classification", "regression"}</code>, default=<code>"classification"</code></dt>
+<dd>If "classification" task, will compute the accuracy, otherwise only the loss.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>test_loss</code></strong> :&ensp;<code>float</code></dt>
+<dd>Value of the loss of the <strong>model</strong> on test samples.</dd>
+<dt><strong><code>test_acc</code></strong> :&ensp;<code>float</code></dt>
+<dd>Value of the accuracy of the <strong>model</strong> on test samples.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def eval_dist(model: Module, testset: Dataset, loss_fn: Module, batch_size: int = 64,
+              task: str = &#34;classification&#34;) -&gt; Tuple[float]:
+    &#34;&#34;&#34;Evaluate a model in a distributed setting.
+
+    Parameters
+    ----------
+    model : torch.nn.Module
+        A neural network to be evaluated.
+
+    testset : torch.utils.data.Dataset
+        A dataloader instance for the test samples.
+
+    loss_fn : torch.nn.Module
+        A loss function.
+
+    batch_size : int, default=64
+        Training and test batch size.
+
+    task : {&#34;classification&#34;, &#34;regression&#34;}, default=&#34;classification&#34;
+        If &#34;classification&#34; task, will compute the accuracy, otherwise only the loss.
+
+    Returns
+    -------
+    test_loss : float
+        Value of the loss of the **model** on test samples.
+
+    test_acc : float
+        Value of the accuracy of the **model** on test samples.
+    &#34;&#34;&#34;
+    # Build a dataloader
+    testloader = DataLoader(testset, batch_size=batch_size)
+
+    model.eval()
+
+    test_loss_list = []
+    test_acc_list = []
+
+    for x_test, y_test in testloader:
+
+        # Model output &amp; loss
+        y_lsm_pred = model(x_test)
+
+        if task == &#34;classification&#34;:
+            test_loss = loss_fn(y_lsm_pred, y_test.flatten())
+        else:
+            test_loss = loss_fn(y_lsm_pred.flatten(), y_test.flatten())
+
+        # Compute loss on test
+        test_loss_value = test_loss.item()
+        test_loss_list.append(test_loss_value)
+
+        # Compute accuracy on test
+        if task == &#34;classification&#34;:
+            y_pred = torch.argmax(y_lsm_pred, dim=1)
+            test_acc_value = np.sum((y_pred == y_test.flatten()).detach().numpy())
+            test_acc_list.append(test_acc_value)
+
+    test_loss = np.mean(test_loss_list) if len(test_loss_list) &gt; 0 else -1
+    test_acc = np.sum(test_acc_list)/len(testset) if len(test_acc_list) &gt; 0 else -1
+
+    model.train()
+
+    return test_loss, test_acc</code></pre>
+</details>
+</dd>
+<dt id="src.dist_training.save_metrics"><code class="name flex">
+<span>def <span class="ident">save_metrics</span></span>(<span>rank: int, world_size: int, blind_size: int, byz_size: int, metrics_scores: Dict[str, List[float]], folder_name: str, verbose: int = 1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write a csv file for each metric computed.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>rank</code></strong> :&ensp;<code>int</code></dt>
+<dd>Rank of current process.</dd>
+<dt><strong><code>world_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total amount of processes.</dd>
+<dt><strong><code>blind_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of blind adversaries inverting their gradient signs.</dd>
+<dt><strong><code>byz_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of Byzantines adversaries.</dd>
+<dt><strong><code>metrics_scores</code></strong> :&ensp;<code>dict</code></dt>
+<dd>A dictionary whose keys are the saved metrics and values are the list of training and test
+scores. Therefore, the values of the dictionary must be arrays of dimension 3.</dd>
+<dt><strong><code>folder_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>Specific name for the folder to save scores results.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>{0, 1, 2}</code>, default=<code>1</code></dt>
+<dd>If 2, will save all scores of all processes along epochs. If 0 or 1, will only save
+the scores of the server.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def save_metrics(rank: int, world_size: int, blind_size: int, byz_size: int,
+                 metrics_scores: Dict[str, List[float]], folder_name: str, verbose: int = 1):
+    &#34;&#34;&#34;Write a csv file for each metric computed.
+
+    Parameters
+    ----------
+    rank : int
+        Rank of current process.
+
+    world_size : int
+        Total amount of processes.
+
+    blind_size : int
+        Number of blind adversaries inverting their gradient signs.
+
+    byz_size : int
+        Number of Byzantines adversaries.
+
+    metrics_scores : dict
+        A dictionary whose keys are the saved metrics and values are the list of training and test
+        scores. Therefore, the values of the dictionary must be arrays of dimension 3.
+
+    folder_name : str
+        Specific name for the folder to save scores results.
+
+    verbose : {0, 1, 2}, default=1
+        If 2, will save all scores of all processes along epochs. If 0 or 1, will only save
+        the scores of the server.
+    &#34;&#34;&#34;
+    for metric, metric_scores in metrics_scores.items():
+
+        metric_col = [&#34;Epoch&#34;, f&#34;Training {metric}&#34;, f&#34;Test {metric}&#34;]
+        metric_df = pd.DataFrame(metric_scores, columns=metric_col)
+
+        # Create necessary folders
+        scores_folder = &#34;results/&#34;
+
+        if rank == 0:
+            if not os.path.exists(scores_folder):
+                os.makedirs(scores_folder)
+        dist.barrier()  # problems can occur if multiple processes run makedirs in parallel
+
+        scores_folder += folder_name + &#34;/&#34;
+
+        if rank == 0:
+            if not os.path.exists(scores_folder):
+                os.makedirs(scores_folder)
+        dist.barrier()  # problems can occur if multiple processes run makedirs in parallel
+
+        scores_folder += &#34;n&#34; + str(world_size) + &#34;_byz&#34; + str(byz_size) + &#34;_inv&#34; + \
+            str(blind_size) + &#34;/&#34;
+
+        if rank == 0:
+            if not os.path.exists(scores_folder):
+                os.makedirs(scores_folder)
+        dist.barrier()  # problems can occur if multiple processes run makedirs in parallel
+
+        # Save in csv format
+        path_to_metric = scores_folder + metric + &#34;_p&#34; + str(rank) + &#34;.csv&#34;
+
+        if verbose == 2 or rank == 0:
+
+            metric_df.to_csv(path_to_metric, columns=metric_df.columns, header=True, index=False)
+
+        dist.barrier()  # make sure that all processes have saved their scores</code></pre>
+</details>
+</dd>
+<dt id="src.dist_training.train_eval_dist"><code class="name flex">
+<span>def <span class="ident">train_eval_dist</span></span>(<span>rank: int, world_size: int, trainset: torch.utils.data.dataset.Dataset, testset: Optional[torch.utils.data.dataset.Dataset], model: torch.nn.modules.module.Module, loss_fn: torch.nn.modules.module.Module, optimizer: torch.optim.optimizer.Optimizer, lr_decay_step: int = 30, lr_decay_rate: float = 0.1, batch_size: int = 64, n_epochs: int = 10, task: str = 'classification', save_loss: bool = True, save_acc: bool = True, folder_name: str = 'tmp', verbose: int = 1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Train the <strong>model</strong> with given <strong>rank</strong> process.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>rank</code></strong> :&ensp;<code>int</code></dt>
+<dd>Rank of current process.</dd>
+<dt><strong><code>world_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total amount of processes.</dd>
+<dt><strong><code>trainset</code></strong> :&ensp;<code>torch.utils.data.Dataset</code></dt>
+<dd>A dataloader instance for the training samples.</dd>
+<dt><strong><code>testset</code></strong> :&ensp;<code>torch.utils.data.Dataset</code>, optional</dt>
+<dd>A dataloader instance for the test samples.</dd>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>A neural network to be trained and evaluated on the datasets.</dd>
+<dt><strong><code>loss_fn</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>A loss function.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>An optimizer to train the model with.</dd>
+<dt><strong><code>lr_decay_step</code></strong> :&ensp;<code>int</code>, default=<code>30</code></dt>
+<dd>Number of steps between each modification of the learning rate.</dd>
+<dt><strong><code>lr_decay_rate</code></strong> :&ensp;<code>float</code>, default=<code>0.1</code></dt>
+<dd>Value by which the learning rate is multiplied every <em>lr_decay_step</em>.</dd>
+<dt><strong><code>batch_size</code></strong> :&ensp;<code>int</code>, default=<code>64</code></dt>
+<dd>Training and test batch size.</dd>
+<dt><strong><code>n_epochs</code></strong> :&ensp;<code>int</code>, default=<code>10</code></dt>
+<dd>Number of training epochs.</dd>
+<dt><strong><code>task</code></strong> :&ensp;<code>{"classification", "regression"}</code>, default=<code>"classification"</code></dt>
+<dd>If "classification" task, will compute the accuracy, otherwise only the loss.</dd>
+<dt><strong><code>save_loss</code></strong> :&ensp;<code>bool</code>, default=<code>True</code></dt>
+<dd>If True, training and test loss for each epoch and rank will be saved in csv files.</dd>
+<dt><strong><code>save_acc</code></strong> :&ensp;<code>bool</code>, default=<code>True</code></dt>
+<dd>If True, training and test accuracy for each epoch and rank will be saved in csv files.</dd>
+<dt><strong><code>folder_name</code></strong> :&ensp;<code>str</code>, default=<code>"tmp"</code></dt>
+<dd>Specific name for the folder to save scores results.</dd>
+<dt><strong><code>verbose</code></strong> :&ensp;<code>{0, 1, 2}</code>, default=<code>1</code></dt>
+<dd>If 2, will print all metrics of all processes along epochs. If 1, will only show a
+progress bar for the rank 0 process with server's scores. If 0, will only show a simple
+progress bar.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def train_eval_dist(rank: int, world_size: int, trainset: Dataset, testset: Optional[Dataset],
+                    model: Module, loss_fn: Module, optimizer: Optimizer, lr_decay_step: int = 30,
+                    lr_decay_rate: float = 0.1, batch_size: int = 64, n_epochs: int = 10,
+                    task: str = &#34;classification&#34;, save_loss: bool = True, save_acc: bool = True,
+                    folder_name: str = &#34;tmp&#34;, verbose: int = 1):
+    &#34;&#34;&#34;Train the **model** with given **rank** process.
+
+    Parameters
+    ----------
+    rank : int
+        Rank of current process.
+
+    world_size : int
+        Total amount of processes.
+
+    trainset : torch.utils.data.Dataset
+        A dataloader instance for the training samples.
+
+    testset : torch.utils.data.Dataset, optional
+        A dataloader instance for the test samples.
+
+    model : torch.nn.Module
+        A neural network to be trained and evaluated on the datasets.
+
+    loss_fn : torch.nn.Module
+        A loss function.
+
+    optimizer : torch.optim.Optimizer
+        An optimizer to train the model with.
+
+    lr_decay_step : int, default=30
+        Number of steps between each modification of the learning rate.
+
+    lr_decay_rate : float, default=0.1
+        Value by which the learning rate is multiplied every *lr_decay_step*.
+
+    batch_size : int, default=64
+        Training and test batch size.
+
+    n_epochs : int, default=10
+        Number of training epochs.
+
+    task : {&#34;classification&#34;, &#34;regression&#34;}, default=&#34;classification&#34;
+        If &#34;classification&#34; task, will compute the accuracy, otherwise only the loss.
+
+    save_loss : bool, default=True
+        If True, training and test loss for each epoch and rank will be saved in csv files.
+
+    save_acc : bool, default=True
+        If True, training and test accuracy for each epoch and rank will be saved in csv files.
+
+    folder_name : str, default=&#34;tmp&#34;
+        Specific name for the folder to save scores results.
+
+    verbose : {0, 1, 2}, default=1
+        If 2, will print all metrics of all processes along epochs. If 1, will only show a
+        progress bar for the rank 0 process with server&#39;s scores. If 0, will only show a simple
+        progress bar.
+    &#34;&#34;&#34;
+    # Build up a dataloader
+    trainloader = DataLoader(trainset, batch_size=batch_size)
+
+    # Learning rate scheduler (improve learning)
+    scheduler = StepLR(optimizer, step_size=lr_decay_step, gamma=lr_decay_rate)
+    current_lr = scheduler.get_last_lr()[0]
+
+    # Metrics lists
+    train_loss_value = -1
+    train_loss_list = []
+
+    train_loss_epoch = -1
+    test_loss_epoch = -1
+    loss_list = []
+
+    train_acc_value = -1
+    train_acc_list = []
+
+    train_acc_epoch = -1
+    test_acc_epoch = -1
+    acc_list = []
+
+    # Progress bar
+    if verbose in {1, 2} and rank == 0:  # show a progress bar for the server
+
+        pbar = tqdm(range(n_epochs), desc=f&#34;Rank 0/{world_size-1}; LR {current_lr}; First epoch...&#34;)
+
+    elif verbose == 0 and rank == 0:  # show a simple progress bar
+
+        pbar = tqdm(range(n_epochs))
+
+    else:
+
+        pbar = range(n_epochs)
+
+    # Start training
+    for epoch in pbar:
+
+        # Training epoch
+        model.train()
+
+        for x_train, y_train in trainloader:
+
+            # Setting grad to zero
+            optimizer.zero_grad()
+
+            # Model output &amp; loss
+            y_lsm_pred = model(x_train)
+            if task == &#34;classification&#34;:
+                train_loss = loss_fn(y_lsm_pred, y_train.flatten())
+            else:
+                train_loss = loss_fn(y_lsm_pred.flatten(), y_train.flatten())
+
+            # Optimization step
+            train_loss.backward()
+
+            optimizer.step()
+
+            # Compute scores on training set
+            train_loss_value = train_loss.item()
+            train_loss_list.append(train_loss_value)
+
+            if task == &#34;classification&#34;:
+                y_pred = torch.argmax(y_lsm_pred, dim=1)
+                train_acc_value = np.sum((y_pred == y_train.flatten()).detach().numpy())
+                train_acc_list.append(train_acc_value)
+
+        # Update the learning rate
+        scheduler.step()
+        current_lr = scheduler.get_last_lr()[0]
+
+        # After each training epoch, we evaluate the model, which is common to all processes
+        if testset is not None and (rank == 0 or verbose == 2):
+
+            test_loss_epoch, test_acc_epoch = eval_dist(model, testset, loss_fn,
+                                                        batch_size=batch_size, task=task)
+
+        dist.barrier()  # make sure that all the processes are here after evaluation
+
+        # Append the computed scores
+        train_loss_epoch = np.mean(train_loss_list)
+        train_loss_list = []
+        loss_list.append([epoch+1, train_loss_epoch, test_loss_epoch])
+
+        if task == &#34;classification&#34;:
+            train_acc_epoch = np.sum(train_acc_list)/len(trainset)
+            train_acc_list = []
+            acc_list.append([epoch+1, train_acc_epoch, test_acc_epoch])
+
+        # If we want to print training information, we have to get the scores to the server
+        if verbose in {1, 2}:
+
+            all_scores = torch.zeros([world_size, 4])
+
+            if rank != 0:
+
+                all_scores[rank][0] = train_loss_epoch
+                all_scores[rank][1] = test_loss_epoch
+                all_scores[rank][2] = train_acc_epoch
+                all_scores[rank][3] = test_acc_epoch
+
+                dist.send(all_scores[rank], 0)
+
+            else:
+
+                all_scores[rank][0] = train_loss_epoch
+                all_scores[rank][1] = test_loss_epoch
+                all_scores[rank][2] = train_acc_epoch
+                all_scores[rank][3] = test_acc_epoch
+
+                for worker in range(1, world_size):
+
+                    dist.recv(all_scores[worker], src=worker)
+
+            dist.barrier()  # wait for the server to know about others&#39; scores
+
+            # Update the progress bar to show current mean scores
+            if rank == 0:
+
+                # Compute mean training scores
+                mean_train_loss_epoch = 0.
+                mean_train_acc_epoch = 0.
+
+                for worker in range(world_size):
+
+                    mean_train_loss_epoch += all_scores[worker][0].item()
+                    mean_train_acc_epoch += all_scores[worker][2].item()
+
+                mean_train_loss_epoch /= world_size
+                mean_train_acc_epoch /= world_size
+
+                # Update the progress bar
+                msg_server = f&#34;Epoch {epoch}; LR {current_lr};&#34;
+                msg_server += f&#34; Mean training loss {np.around(mean_train_loss_epoch, 4)};&#34;
+                msg_server += f&#34; Test loss {np.around(test_loss_epoch, 4)};&#34;
+                if task == &#34;classification&#34;:
+                    msg_server += f&#34; Mean training acc. {np.around(mean_train_acc_epoch, 4)};&#34;
+                    msg_server += f&#34; Test acc. {np.around(test_acc_epoch, 4)}&#34;
+                pbar.set_description(msg_server)
+
+            # If verbose is 2, print a summary of all processes current scores
+            if verbose == 2:
+
+                if rank == 0:
+
+                    msg_server = &#34;\n\n&#34;
+
+                    for worker in range(world_size):
+
+                        msg_worker = f&#34;Rank {worker}/{world_size-1}; Epoch {epoch};&#34;
+                        msg_worker += \
+                            f&#34; Training loss {np.around(all_scores[worker][0].item(), 4)};&#34;
+                        msg_worker += f&#34; Test loss {np.around(all_scores[worker][1].item(), 4)};&#34;
+                        if task == &#34;classification&#34;:
+                            msg_worker += \
+                                f&#34; Training accuracy {np.around(all_scores[worker][2].item(), 4)};&#34;
+                            msg_worker += \
+                                f&#34; Test accuracy {np.around(all_scores[worker][3].item(), 4)}&#34;
+                        msg_server += msg_worker + &#34;\n&#34;
+
+                    print(msg_server)
+
+                dist.barrier()  # wait for the server to print the scores
+
+    # Saving scores
+    byz_size = optimizer.get_byz_size()
+    blind_size = optimizer.get_blind_size()
+    metrics_scores = {}
+
+    if save_loss:
+        metrics_scores[&#34;loss&#34;] = loss_list
+
+    if task == &#34;classification&#34; and save_acc:
+        metrics_scores[&#34;acc&#34;] = acc_list
+
+    save_metrics(rank, world_size, blind_size, byz_size, metrics_scores, folder_name,
+                 verbose=verbose)
+
+    dist.barrier()  # wait for all processes to finish</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<header>
+<a class="homelink" rel="home" title="Directory index" href="index.html">
+<img src="logo.png" alt="">
+</a>
+</header>
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src" href="index.html">src</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="src.dist_training.eval_dist" href="#src.dist_training.eval_dist">eval_dist</a></code></li>
+<li><code><a title="src.dist_training.save_metrics" href="#src.dist_training.save_metrics">save_metrics</a></code></li>
+<li><code><a title="src.dist_training.train_eval_dist" href="#src.dist_training.train_eval_dist">train_eval_dist</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
