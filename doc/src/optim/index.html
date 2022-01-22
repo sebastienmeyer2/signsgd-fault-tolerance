@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>src.optim API documentation</title>
+<meta name="description" content="Contains custom distributed optimizers." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.optim</code></h1>
+</header>
+<section id="section-intro">
+<p>Contains custom distributed optimizers.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Contains custom distributed optimizers.&#34;&#34;&#34;
+
+
+from optim.distsgd import DistSGD
+from optim.signum import Signum
+
+
+__all__ = [&#34;DistSGD&#34;, &#34;Signum&#34;]</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="src.optim.distsgd" href="distsgd.html">src.optim.distsgd</a></code></dt>
+<dd>
+<div class="desc"><p>Contain our own optimizer class for a distributed SGD.</p></div>
+</dd>
+<dt><code class="name"><a title="src.optim.signum" href="signum.html">src.optim.signum</a></code></dt>
+<dd>
+<div class="desc"><p>Contain our own optimizer class for Signum algorithm …</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="src.optim.DistSGD"><code class="flex name class">
+<span>class <span class="ident">DistSGD</span></span>
+<span>(</span><span>params: Iterable, blind_list: Optional[List[int]] = None, byz_list: Optional[List[int]] = None, lr: float = 0.001, momentum: float = 0.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Extend the base <code>torch.optim.Optimizer</code> class from PyTorch for distributed SGD.</p>
+<p>Initialize a distributed SGD optimizer.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>iterable</code></dt>
+<dd>Model parameters.</dd>
+<dt><strong><code>blind_list</code></strong> :&ensp;<code>list</code> of <code>int</code>, optional</dt>
+<dd>Ranks of blind adversaries inverting their gradients signs.</dd>
+<dt><strong><code>byz_list</code></strong> :&ensp;<code>list</code> of <code>int</code>, optional</dt>
+<dd>Ranks of Byzantine adversaries.</dd>
+<dt><strong><code>lr</code></strong> :&ensp;<code>float</code>, default=<code>0.001</code></dt>
+<dd>Learning rate.</dd>
+<dt><strong><code>momentum</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>Value of momentum.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DistSGD(Optimizer):
+    &#34;&#34;&#34;Extend the base `torch.optim.Optimizer` class from PyTorch for distributed SGD.&#34;&#34;&#34;
+
+    def __init__(self, params: Iterable, blind_list: Optional[List[int]] = None,
+                 byz_list: Optional[List[int]] = None, lr: float = 1e-3, momentum: float = 0.0):
+        &#34;&#34;&#34;Initialize a distributed SGD optimizer.
+
+        Parameters
+        ----------
+        params : iterable
+            Model parameters.
+
+        blind_list : list of int, optional
+            Ranks of blind adversaries inverting their gradients signs.
+
+        byz_list : list of int, optional
+            Ranks of Byzantine adversaries.
+
+        lr : float, default=0.001
+            Learning rate.
+
+        momentum : float, default=0.0
+            Value of momentum.
+        &#34;&#34;&#34;
+        if lr &lt; 0.:
+            raise ValueError(f&#34;Invalid learning rate: {lr}&#34;)
+        if momentum &lt; 0. or momentum &gt; 1.:
+            raise ValueError(f&#34;Invalid momentum parameter: {momentum}&#34;)
+
+        defaults = dict(lr=lr, momentum=momentum)
+
+        super().__init__(params, defaults)
+
+        # Handling of blind adversaries
+        self.blind_list = blind_list
+        self.blind_size = len(blind_list) if blind_list is not None else 0
+
+        # Handling of Byzantine adversaries
+        self.byz_list = byz_list
+        self.byz_size = len(byz_list) if byz_list is not None else 0
+
+        self.groups = []  # sharing of data between the Byzantine server and other processes
+        self.byz_server = None
+
+        if self.byz_list is not None and self.byz_size &gt; 0:
+
+            self.byz_server = self.byz_list[0]
+
+            for i in range(dist.get_world_size()):
+
+                if i != self.byz_server:
+                    self.groups.append(dist.new_group([i, self.byz_server]))
+                else:
+                    self.groups.append(None)  # make sure we have the correct length
+
+    def get_blind_size(self) -&gt; int:
+        &#34;&#34;&#34;Return the number of blind adversaries inverting their gradient signs.
+
+        Returns
+        -------
+        blind_size : int
+            Number of blind adversaries inverting their gradient signs.
+        &#34;&#34;&#34;
+        blind_size = self.blind_size
+
+        return blind_size
+
+    def get_byz_size(self) -&gt; int:
+        &#34;&#34;&#34;Return the number of Byzantine adversaries.
+
+        Returns
+        -------
+        byz_size : int
+            Number of Byzantine adversaries.
+        &#34;&#34;&#34;
+        byz_size = self.byz_size
+
+        return byz_size
+
+    def step(self, closure: Optional[Callable] = None) -&gt; Optional[float]:
+        &#34;&#34;&#34;Perform one step of optimization.
+
+        Parameters
+        ----------
+        closure : callable, optional
+            Callable function to evaluate the loss.
+
+        Returns
+        -------
+        loss : float, optional
+            Computed loss if a closure is applied.
+        &#34;&#34;&#34;
+        rank = dist.get_rank()
+        world_size = dist.get_world_size()
+        f = self.byz_size
+
+        loss = None
+        if closure is not None:
+            with torch.enable_grad():
+                loss = closure()
+
+        for group in self.param_groups:
+
+            lr = group[&#34;lr&#34;]
+            momentum = group[&#34;momentum&#34;]
+
+            all_d_p = []
+
+            # First step: Workers compute the signs of their gradients and send them
+            for p in group[&#34;params&#34;]:
+
+                if p.grad is None:
+                    continue
+
+                # Batch gradient of current worker
+                d_p = p.grad.data
+
+                # In case of momentum, we are keeping a proportion of past gradient in memory
+                if momentum &gt;= 0.:
+
+                    param_state = self.state[p]
+
+                    if &#34;momentum_buffer&#34; not in param_state:
+                        buf = param_state[&#34;momentum_buffer&#34;] = torch.zeros_like(p.data)
+                    else:
+                        buf = param_state[&#34;momentum_buffer&#34;]
+
+                    buf.mul_(momentum).add_(d_p, alpha=1-momentum)
+                    d_p.copy_(buf)
+
+                # Blind adversaries inverse their gradients
+                if self.blind_list is not None and rank in self.blind_list:
+                    d_p.mul_(-1)
+
+                # All gradients are gathered to make computation easier
+                all_d_p.append(d_p)
+
+            # Second step: Gradients are intercepted by Byzantine workers
+            if f &gt; 0:
+
+                other_workers = [i for i in range(world_size) if i != self.byz_server]
+
+                # Tensors are flattened in order to make computation easier
+                all_d_p_f = _flatten_dense_tensors(all_d_p)
+
+                # The Byzantine server will gather all the gradients signs
+                if rank == self.byz_server:
+
+                    all_d_p_f_list = torch.zeros([world_size] + list(all_d_p_f.size()))
+                    all_d_p_f_list[self.byz_server] = all_d_p_f.clone()  # his own tensor
+
+                    for worker in other_workers:
+
+                        all_d_p_f_temp = torch.zeros(all_d_p_f.size())
+                        dist.broadcast(all_d_p_f_temp, worker, group=self.groups[worker])
+                        all_d_p_f_list[worker] = all_d_p_f_temp  # others&#39; tensors
+
+                else:
+
+                    dist.broadcast(all_d_p_f, rank, group=self.groups[rank])
+
+                # Then, the Byzantine server will deploy its strategy
+                if rank == self.byz_server:
+
+                    # The Byzantine server opposes to all the other workers
+                    agg_d_p_f = all_d_p_f_list[other_workers].sum(0)
+                    all_d_p_f.copy_(-agg_d_p_f)
+
+                # Recover initial shapes
+                new_all_d_p = _unflatten_dense_tensors(all_d_p_f, all_d_p)
+
+                for d_p, new_d_p in zip(all_d_p, new_all_d_p):
+
+                    d_p.copy_(new_d_p)
+
+            # Third step: Server sends back the aggregation and workers update their parameters
+            for p in group[&#34;params&#34;]:
+
+                if p.grad is None:
+                    continue
+
+                d_p = p.grad.data
+
+                dist.barrier()  # everyone must have the gradient of correct index
+
+                # Final values are summed (we omit the idea of server here)
+                dist.all_reduce(d_p, op=dist.ReduceOp.SUM)
+
+                # Weights are modified according to the sign of summed gradients signs
+                p.data.add_(d_p, alpha=-lr)
+
+        return loss</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.optim.optimizer.Optimizer</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="src.optim.DistSGD.get_blind_size"><code class="name flex">
+<span>def <span class="ident">get_blind_size</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the number of blind adversaries inverting their gradient signs.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>blind_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of blind adversaries inverting their gradient signs.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_blind_size(self) -&gt; int:
+    &#34;&#34;&#34;Return the number of blind adversaries inverting their gradient signs.
+
+    Returns
+    -------
+    blind_size : int
+        Number of blind adversaries inverting their gradient signs.
+    &#34;&#34;&#34;
+    blind_size = self.blind_size
+
+    return blind_size</code></pre>
+</details>
+</dd>
+<dt id="src.optim.DistSGD.get_byz_size"><code class="name flex">
+<span>def <span class="ident">get_byz_size</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the number of Byzantine adversaries.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>byz_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of Byzantine adversaries.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_byz_size(self) -&gt; int:
+    &#34;&#34;&#34;Return the number of Byzantine adversaries.
+
+    Returns
+    -------
+    byz_size : int
+        Number of Byzantine adversaries.
+    &#34;&#34;&#34;
+    byz_size = self.byz_size
+
+    return byz_size</code></pre>
+</details>
+</dd>
+<dt id="src.optim.DistSGD.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, closure: Optional[Callable] = None) ‑> Optional[float]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform one step of optimization.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>closure</code></strong> :&ensp;<code>callable</code>, optional</dt>
+<dd>Callable function to evaluate the loss.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>loss</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Computed loss if a closure is applied.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def step(self, closure: Optional[Callable] = None) -&gt; Optional[float]:
+    &#34;&#34;&#34;Perform one step of optimization.
+
+    Parameters
+    ----------
+    closure : callable, optional
+        Callable function to evaluate the loss.
+
+    Returns
+    -------
+    loss : float, optional
+        Computed loss if a closure is applied.
+    &#34;&#34;&#34;
+    rank = dist.get_rank()
+    world_size = dist.get_world_size()
+    f = self.byz_size
+
+    loss = None
+    if closure is not None:
+        with torch.enable_grad():
+            loss = closure()
+
+    for group in self.param_groups:
+
+        lr = group[&#34;lr&#34;]
+        momentum = group[&#34;momentum&#34;]
+
+        all_d_p = []
+
+        # First step: Workers compute the signs of their gradients and send them
+        for p in group[&#34;params&#34;]:
+
+            if p.grad is None:
+                continue
+
+            # Batch gradient of current worker
+            d_p = p.grad.data
+
+            # In case of momentum, we are keeping a proportion of past gradient in memory
+            if momentum &gt;= 0.:
+
+                param_state = self.state[p]
+
+                if &#34;momentum_buffer&#34; not in param_state:
+                    buf = param_state[&#34;momentum_buffer&#34;] = torch.zeros_like(p.data)
+                else:
+                    buf = param_state[&#34;momentum_buffer&#34;]
+
+                buf.mul_(momentum).add_(d_p, alpha=1-momentum)
+                d_p.copy_(buf)
+
+            # Blind adversaries inverse their gradients
+            if self.blind_list is not None and rank in self.blind_list:
+                d_p.mul_(-1)
+
+            # All gradients are gathered to make computation easier
+            all_d_p.append(d_p)
+
+        # Second step: Gradients are intercepted by Byzantine workers
+        if f &gt; 0:
+
+            other_workers = [i for i in range(world_size) if i != self.byz_server]
+
+            # Tensors are flattened in order to make computation easier
+            all_d_p_f = _flatten_dense_tensors(all_d_p)
+
+            # The Byzantine server will gather all the gradients signs
+            if rank == self.byz_server:
+
+                all_d_p_f_list = torch.zeros([world_size] + list(all_d_p_f.size()))
+                all_d_p_f_list[self.byz_server] = all_d_p_f.clone()  # his own tensor
+
+                for worker in other_workers:
+
+                    all_d_p_f_temp = torch.zeros(all_d_p_f.size())
+                    dist.broadcast(all_d_p_f_temp, worker, group=self.groups[worker])
+                    all_d_p_f_list[worker] = all_d_p_f_temp  # others&#39; tensors
+
+            else:
+
+                dist.broadcast(all_d_p_f, rank, group=self.groups[rank])
+
+            # Then, the Byzantine server will deploy its strategy
+            if rank == self.byz_server:
+
+                # The Byzantine server opposes to all the other workers
+                agg_d_p_f = all_d_p_f_list[other_workers].sum(0)
+                all_d_p_f.copy_(-agg_d_p_f)
+
+            # Recover initial shapes
+            new_all_d_p = _unflatten_dense_tensors(all_d_p_f, all_d_p)
+
+            for d_p, new_d_p in zip(all_d_p, new_all_d_p):
+
+                d_p.copy_(new_d_p)
+
+        # Third step: Server sends back the aggregation and workers update their parameters
+        for p in group[&#34;params&#34;]:
+
+            if p.grad is None:
+                continue
+
+            d_p = p.grad.data
+
+            dist.barrier()  # everyone must have the gradient of correct index
+
+            # Final values are summed (we omit the idea of server here)
+            dist.all_reduce(d_p, op=dist.ReduceOp.SUM)
+
+            # Weights are modified according to the sign of summed gradients signs
+            p.data.add_(d_p, alpha=-lr)
+
+    return loss</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.optim.Signum"><code class="flex name class">
+<span>class <span class="ident">Signum</span></span>
+<span>(</span><span>params: Iterable, blind_list: Optional[List[int]] = None, byz_list: Optional[List[int]] = None, lr: float = 0.0001, momentum: float = 0.9, weight_decay: float = 0.0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Extend the base <code>torch.optim.Optimizer</code> class from PyTorch to the Signum algorithm.</p>
+<p>Initialize an instance of Signum optimizer.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>params</code></strong> :&ensp;<code>iterable</code></dt>
+<dd>Model parameters.</dd>
+<dt><strong><code>blind_list</code></strong> :&ensp;<code>list</code> of <code>int</code>, optional</dt>
+<dd>Ranks of blind adversaries inverting their gradients signs.</dd>
+<dt><strong><code>byz_list</code></strong> :&ensp;<code>list</code> of <code>int</code>, optional</dt>
+<dd>Ranks of Byzantine adversaries.</dd>
+<dt><strong><code>lr</code></strong> :&ensp;<code>float</code>, default=<code>0.0001</code></dt>
+<dd>Learning rate, denoted <span><span class="MathJax_Preview">\eta</span><script type="math/tex">\eta</script></span> in the algorithm description.</dd>
+<dt><strong><code>momentum</code></strong> :&ensp;<code>float</code>, default=<code>0.9</code></dt>
+<dd>Value of momentum, denoted <span><span class="MathJax_Preview">\beta</span><script type="math/tex">\beta</script></span> in the algorithm description. If <strong>momentum</strong> is
+equal to zero, yields <em>SignSGD</em>.</dd>
+<dt><strong><code>weight_decay</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>Value of the weight decay, denoted <span><span class="MathJax_Preview">\lambda</span><script type="math/tex">\lambda</script></span> in the algorithm description.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Signum(Optimizer):
+    &#34;&#34;&#34;Extend the base `torch.optim.Optimizer` class from PyTorch to the Signum algorithm.&#34;&#34;&#34;
+
+    def __init__(self, params: Iterable, blind_list: Optional[List[int]] = None,
+                 byz_list: Optional[List[int]] = None, lr: float = 1e-4, momentum: float = 0.9,
+                 weight_decay: float = 0.0):
+        r&#34;&#34;&#34;Initialize an instance of Signum optimizer.
+
+        Parameters
+        ----------
+        params : iterable
+            Model parameters.
+
+        blind_list : list of int, optional
+            Ranks of blind adversaries inverting their gradients signs.
+
+        byz_list : list of int, optional
+            Ranks of Byzantine adversaries.
+
+        lr : float, default=0.0001
+            Learning rate, denoted \(\eta\) in the algorithm description.
+
+        momentum : float, default=0.9
+            Value of momentum, denoted \(\beta\) in the algorithm description. If **momentum** is
+            equal to zero, yields *SignSGD*.
+
+        weight_decay : float, default=0.0
+            Value of the weight decay, denoted \(\lambda\) in the algorithm description.
+        &#34;&#34;&#34;
+        if lr &lt; 0.:
+            raise ValueError(f&#34;Invalid learning rate: {lr}&#34;)
+        if momentum &lt; 0. or momentum &gt; 1.:
+            raise ValueError(f&#34;Invalid momentum parameter: {momentum}&#34;)
+        if weight_decay &lt; 0.:
+            raise ValueError(f&#34;Invalid weight decay value: {weight_decay}&#34;)
+
+        defaults = dict(lr=lr, momentum=momentum, weight_decay=weight_decay)
+
+        super().__init__(params, defaults)
+
+        # Handling of blind adversaries
+        self.blind_list = blind_list
+        self.blind_size = len(blind_list) if blind_list is not None else 0
+
+        # Handling of Byzantine adversaries
+        self.byz_list = byz_list
+        self.byz_size = len(byz_list) if byz_list is not None else 0
+
+        self.groups = []  # sharing of data between the Byzantine server and other processes
+        self.byz_server = None
+
+        if self.byz_list is not None and self.byz_size &gt; 0:
+
+            self.byz_server = self.byz_list[0]
+
+            for i in range(dist.get_world_size()):
+
+                if i != self.byz_server:
+                    self.groups.append(dist.new_group([i, self.byz_server]))
+                else:
+                    self.groups.append(None)  # make sure we have the correct length
+
+    def get_blind_size(self) -&gt; int:
+        &#34;&#34;&#34;Return the number of blind adversaries inverting their gradient signs.
+
+        Returns
+        -------
+        blind_size : int
+            Number of blind adversaries inverting their gradient signs.
+        &#34;&#34;&#34;
+        blind_size = self.blind_size
+
+        return blind_size
+
+    def get_byz_size(self) -&gt; int:
+        &#34;&#34;&#34;Return the number of Byzantine adversaries.
+
+        Returns
+        -------
+        byz_size : int
+            Number of Byzantine adversaries.
+        &#34;&#34;&#34;
+        byz_size = self.byz_size
+
+        return byz_size
+
+    def step(self, closure: Optional[Callable] = None) -&gt; Optional[float]:
+        &#34;&#34;&#34;Perform one step of optimization.
+
+        Parameters
+        ----------
+        closure : callable, optional
+            Callable function to evaluate the loss.
+
+        Returns
+        -------
+        loss : float, optional
+            Computed loss if a closure is applied.
+        &#34;&#34;&#34;
+        rank = dist.get_rank()
+        world_size = dist.get_world_size()
+        f = self.byz_size
+
+        loss = None
+        if closure is not None:
+            loss = closure()
+
+        for group in self.param_groups:
+
+            lr = group[&#34;lr&#34;]
+            momentum = group[&#34;momentum&#34;]
+            weight_decay = group[&#34;weight_decay&#34;]
+
+            all_d_p = []
+
+            # First step: Workers compute the signs of their gradients and send them
+            for p in group[&#34;params&#34;]:
+
+                if p.grad is None:
+                    continue
+
+                # Batch gradient of current worker
+                d_p = p.grad.data
+
+                # In case of momentum, we are keeping a proportion of past gradient in memory
+                if momentum &gt;= 0.:
+
+                    param_state = self.state[p]
+
+                    if &#34;momentum_buffer&#34; not in param_state:
+                        buf = param_state[&#34;momentum_buffer&#34;] = torch.zeros_like(p.data)
+                    else:
+                        buf = param_state[&#34;momentum_buffer&#34;]
+
+                    buf.mul_(momentum).add_(d_p, alpha=1-momentum)
+                    d_p.copy_(buf)
+
+                # Compute the sign of current gradient
+                d_p.sign_()
+
+                # Blind adversaries inverse their gradients
+                if self.blind_list is not None and rank in self.blind_list:
+                    d_p.mul_(-1)
+
+                # All gradients are gathered to make computation easier
+                all_d_p.append(d_p)
+
+            # Second step: Gradients are intercepted by Byzantine workers
+            if self.byz_list is not None and f &gt; 0:
+
+                # One of the Byzantines will be the Byzantine server
+                other_byz = [i for i in self.byz_list if i != self.byz_server]
+
+                # Tensors are flattened in order to make computation easier
+                all_d_p_f = _flatten_dense_tensors(all_d_p)
+
+                # The Byzantine server will gather all the gradients signs
+                if rank == self.byz_server:
+
+                    not_byz = [i for i in range(world_size) if i not in self.byz_list]
+
+                    all_d_p_f_list = torch.zeros([world_size] + list(all_d_p_f.size()))
+
+                    for worker in not_byz:
+
+                        all_d_p_f_temp = torch.zeros(all_d_p_f.size())
+                        dist.broadcast(all_d_p_f_temp, worker, group=self.groups[worker])
+                        all_d_p_f_list[worker] = all_d_p_f_temp  # tensors from not Byzantines
+
+                    # Then, the Byzantine server will deploy its strategy
+                    agg_d_p_f = all_d_p_f_list.sum(0)
+
+                    # If Byzantines are not able to reverse the sign, they go against it
+                    all_d_p_f[agg_d_p_f &gt; f] = -f
+
+                    all_d_p_f[agg_d_p_f &lt; -f] = +f
+
+                    # If Byzantines have a chance to kill the learning process, they will first
+                    # kill the aggregate of all honest workers and then oscillate around zero
+                    mod = torch.Tensor([2])
+
+                    idx_pos = ((agg_d_p_f - f/2).abs() &lt;= f/2)
+                    agg_pos = agg_d_p_f[idx_pos]
+                    all_d_p_f[idx_pos] = (-agg_pos - (f-agg_pos).remainder(mod))
+
+                    idx_neg = ((agg_d_p_f + f/2).abs() &lt;= f/2)
+                    agg_neg = agg_d_p_f[idx_neg]
+                    all_d_p_f[idx_neg] = (-agg_neg + (f+agg_neg).remainder(mod))
+
+                # Other Byzantines become silent
+                elif rank in other_byz:
+
+                    all_d_p_f.fill_(0)
+
+                # Healthy workers and blind adversaries send their information
+                else:
+
+                    dist.broadcast(all_d_p_f, rank, group=self.groups[rank])
+
+                # Recover initial shapes (for all processes)
+                new_all_d_p = _unflatten_dense_tensors(all_d_p_f, all_d_p)
+
+                for d_p, new_d_p in zip(all_d_p, new_all_d_p):
+
+                    d_p.copy_(new_d_p)
+
+            # Third step: Server sends back the aggregation and workers update their parameters
+            for p in group[&#34;params&#34;]:
+
+                if p.grad is None:
+                    continue
+
+                d_p = p.grad.data
+
+                dist.barrier()  # everyone must have the gradient of correct index
+
+                # Final values are summed (we omit the idea of server here)
+                dist.all_reduce(d_p, op=dist.ReduceOp.SUM)
+
+                # In case of weight decay, current weights are slightly diminished
+                if weight_decay &gt;= 0.0:
+                    p.data.mul_(1 - lr*weight_decay)
+
+                # Weights are modified according to the sign of summed gradients signs
+                p.data.add_(d_p.sign(), alpha=-lr)
+
+        return loss</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>torch.optim.optimizer.Optimizer</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="src.optim.Signum.get_blind_size"><code class="name flex">
+<span>def <span class="ident">get_blind_size</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the number of blind adversaries inverting their gradient signs.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>blind_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of blind adversaries inverting their gradient signs.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_blind_size(self) -&gt; int:
+    &#34;&#34;&#34;Return the number of blind adversaries inverting their gradient signs.
+
+    Returns
+    -------
+    blind_size : int
+        Number of blind adversaries inverting their gradient signs.
+    &#34;&#34;&#34;
+    blind_size = self.blind_size
+
+    return blind_size</code></pre>
+</details>
+</dd>
+<dt id="src.optim.Signum.get_byz_size"><code class="name flex">
+<span>def <span class="ident">get_byz_size</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the number of Byzantine adversaries.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>byz_size</code></strong> :&ensp;<code>int</code></dt>
+<dd>Number of Byzantine adversaries.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_byz_size(self) -&gt; int:
+    &#34;&#34;&#34;Return the number of Byzantine adversaries.
+
+    Returns
+    -------
+    byz_size : int
+        Number of Byzantine adversaries.
+    &#34;&#34;&#34;
+    byz_size = self.byz_size
+
+    return byz_size</code></pre>
+</details>
+</dd>
+<dt id="src.optim.Signum.step"><code class="name flex">
+<span>def <span class="ident">step</span></span>(<span>self, closure: Optional[Callable] = None) ‑> Optional[float]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform one step of optimization.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>closure</code></strong> :&ensp;<code>callable</code>, optional</dt>
+<dd>Callable function to evaluate the loss.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>loss</code></strong> :&ensp;<code>float</code>, optional</dt>
+<dd>Computed loss if a closure is applied.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def step(self, closure: Optional[Callable] = None) -&gt; Optional[float]:
+    &#34;&#34;&#34;Perform one step of optimization.
+
+    Parameters
+    ----------
+    closure : callable, optional
+        Callable function to evaluate the loss.
+
+    Returns
+    -------
+    loss : float, optional
+        Computed loss if a closure is applied.
+    &#34;&#34;&#34;
+    rank = dist.get_rank()
+    world_size = dist.get_world_size()
+    f = self.byz_size
+
+    loss = None
+    if closure is not None:
+        loss = closure()
+
+    for group in self.param_groups:
+
+        lr = group[&#34;lr&#34;]
+        momentum = group[&#34;momentum&#34;]
+        weight_decay = group[&#34;weight_decay&#34;]
+
+        all_d_p = []
+
+        # First step: Workers compute the signs of their gradients and send them
+        for p in group[&#34;params&#34;]:
+
+            if p.grad is None:
+                continue
+
+            # Batch gradient of current worker
+            d_p = p.grad.data
+
+            # In case of momentum, we are keeping a proportion of past gradient in memory
+            if momentum &gt;= 0.:
+
+                param_state = self.state[p]
+
+                if &#34;momentum_buffer&#34; not in param_state:
+                    buf = param_state[&#34;momentum_buffer&#34;] = torch.zeros_like(p.data)
+                else:
+                    buf = param_state[&#34;momentum_buffer&#34;]
+
+                buf.mul_(momentum).add_(d_p, alpha=1-momentum)
+                d_p.copy_(buf)
+
+            # Compute the sign of current gradient
+            d_p.sign_()
+
+            # Blind adversaries inverse their gradients
+            if self.blind_list is not None and rank in self.blind_list:
+                d_p.mul_(-1)
+
+            # All gradients are gathered to make computation easier
+            all_d_p.append(d_p)
+
+        # Second step: Gradients are intercepted by Byzantine workers
+        if self.byz_list is not None and f &gt; 0:
+
+            # One of the Byzantines will be the Byzantine server
+            other_byz = [i for i in self.byz_list if i != self.byz_server]
+
+            # Tensors are flattened in order to make computation easier
+            all_d_p_f = _flatten_dense_tensors(all_d_p)
+
+            # The Byzantine server will gather all the gradients signs
+            if rank == self.byz_server:
+
+                not_byz = [i for i in range(world_size) if i not in self.byz_list]
+
+                all_d_p_f_list = torch.zeros([world_size] + list(all_d_p_f.size()))
+
+                for worker in not_byz:
+
+                    all_d_p_f_temp = torch.zeros(all_d_p_f.size())
+                    dist.broadcast(all_d_p_f_temp, worker, group=self.groups[worker])
+                    all_d_p_f_list[worker] = all_d_p_f_temp  # tensors from not Byzantines
+
+                # Then, the Byzantine server will deploy its strategy
+                agg_d_p_f = all_d_p_f_list.sum(0)
+
+                # If Byzantines are not able to reverse the sign, they go against it
+                all_d_p_f[agg_d_p_f &gt; f] = -f
+
+                all_d_p_f[agg_d_p_f &lt; -f] = +f
+
+                # If Byzantines have a chance to kill the learning process, they will first
+                # kill the aggregate of all honest workers and then oscillate around zero
+                mod = torch.Tensor([2])
+
+                idx_pos = ((agg_d_p_f - f/2).abs() &lt;= f/2)
+                agg_pos = agg_d_p_f[idx_pos]
+                all_d_p_f[idx_pos] = (-agg_pos - (f-agg_pos).remainder(mod))
+
+                idx_neg = ((agg_d_p_f + f/2).abs() &lt;= f/2)
+                agg_neg = agg_d_p_f[idx_neg]
+                all_d_p_f[idx_neg] = (-agg_neg + (f+agg_neg).remainder(mod))
+
+            # Other Byzantines become silent
+            elif rank in other_byz:
+
+                all_d_p_f.fill_(0)
+
+            # Healthy workers and blind adversaries send their information
+            else:
+
+                dist.broadcast(all_d_p_f, rank, group=self.groups[rank])
+
+            # Recover initial shapes (for all processes)
+            new_all_d_p = _unflatten_dense_tensors(all_d_p_f, all_d_p)
+
+            for d_p, new_d_p in zip(all_d_p, new_all_d_p):
+
+                d_p.copy_(new_d_p)
+
+        # Third step: Server sends back the aggregation and workers update their parameters
+        for p in group[&#34;params&#34;]:
+
+            if p.grad is None:
+                continue
+
+            d_p = p.grad.data
+
+            dist.barrier()  # everyone must have the gradient of correct index
+
+            # Final values are summed (we omit the idea of server here)
+            dist.all_reduce(d_p, op=dist.ReduceOp.SUM)
+
+            # In case of weight decay, current weights are slightly diminished
+            if weight_decay &gt;= 0.0:
+                p.data.mul_(1 - lr*weight_decay)
+
+            # Weights are modified according to the sign of summed gradients signs
+            p.data.add_(d_p.sign(), alpha=-lr)
+
+    return loss</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<header>
+<a class="homelink" rel="home" title="Directory index" href="index.html">
+<img src="logo.png" alt="">
+</a>
+</header>
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src" href="../index.html">src</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="src.optim.distsgd" href="distsgd.html">src.optim.distsgd</a></code></li>
+<li><code><a title="src.optim.signum" href="signum.html">src.optim.signum</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="src.optim.DistSGD" href="#src.optim.DistSGD">DistSGD</a></code></h4>
+<ul class="">
+<li><code><a title="src.optim.DistSGD.get_blind_size" href="#src.optim.DistSGD.get_blind_size">get_blind_size</a></code></li>
+<li><code><a title="src.optim.DistSGD.get_byz_size" href="#src.optim.DistSGD.get_byz_size">get_byz_size</a></code></li>
+<li><code><a title="src.optim.DistSGD.step" href="#src.optim.DistSGD.step">step</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.optim.Signum" href="#src.optim.Signum">Signum</a></code></h4>
+<ul class="">
+<li><code><a title="src.optim.Signum.get_blind_size" href="#src.optim.Signum.get_blind_size">get_blind_size</a></code></li>
+<li><code><a title="src.optim.Signum.get_byz_size" href="#src.optim.Signum.get_byz_size">get_byz_size</a></code></li>
+<li><code><a title="src.optim.Signum.step" href="#src.optim.Signum.step">step</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
